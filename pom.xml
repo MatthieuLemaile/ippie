@@ -25,6 +25,7 @@
 		<mariadb.version>1.5.9</mariadb.version>
 		
 		<hibernate.version>5.2.10.Final</hibernate.version>
+		<hikari.version>2.6.1</hikari.version>
 	</properties>
 
 	<dependencies>
@@ -104,6 +105,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+   			<groupId>org.springframework</groupId>
+   			<artifactId>spring-orm</artifactId>
+    		<version>${spring.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-expression</artifactId>
 			<version>${spring.version}</version>
@@ -127,6 +133,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-java8</artifactId>
 			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+				<groupId>com.zaxxer</groupId>
+				<artifactId>HikariCP</artifactId>
+				<version>${hikari.version}</version>
 		</dependency>
 
 	</dependencies>

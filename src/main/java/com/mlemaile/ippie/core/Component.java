@@ -25,6 +25,7 @@ public class Component {
     private LocalDate discontinued;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private State     state;
+    @Column(name = "state_details")
     private String    stateDetails;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private Model     model;
