@@ -10,8 +10,9 @@ public interface ComponentDao {
     /**
      * This method create or update the given component depending on the id.
      * @param c the component to create/update
+     * @return the saved component
      */
-    public void save(Component c);
+    public Optional<Component> save(Component c);
 
     /**
      * This method find a component based on the given id.

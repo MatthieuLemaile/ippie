@@ -10,8 +10,9 @@ public interface ModelDao {
     /**
      * This method create or update the given Model (depending on whether or not the id is set).
      * @param model the model to create/update
+     * @return The saved model
      */
-    public void save(Model model);
+    public Optional<Model> save ( Model model );
 
     /**
      * This method return the model corresponding to the given id.

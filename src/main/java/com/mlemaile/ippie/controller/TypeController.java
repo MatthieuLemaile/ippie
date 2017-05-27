@@ -16,7 +16,7 @@ public class TypeController {
     @Autowired
     ServiceType serviceType;
 
-    @GetMapping("/dashboard")
+    @GetMapping({ "/typeDashboard", "/" })
     public ModelAndView displayAllType () {
         ModelAndView model = new ModelAndView();
         model.setViewName("typeView");

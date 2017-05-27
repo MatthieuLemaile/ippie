@@ -10,8 +10,9 @@ public interface StateDao {
     /**
      * This method update or create the given State
      * @param state the State to update/create.
+     * @return the saved state
      */
-    public void save(State state);
+    public Optional<State> save ( State state );
 
     /**
      * This method find a State based on the given id.
