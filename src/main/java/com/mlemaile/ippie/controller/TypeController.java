@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mlemaile.ippie.core.Type;
 import com.mlemaile.ippie.service.ServiceType;
+import com.mlemaile.ippie.service.dto.TypeDto;
 
 @Controller
 public class TypeController {
@@ -20,7 +20,7 @@ public class TypeController {
     public ModelAndView displayAllType () {
         ModelAndView model = new ModelAndView();
         model.setViewName("typeDashboard");
-        List<Type> types = serviceType.findAll();
+        List<TypeDto> types = serviceType.findAll();
         model.addObject("types", types);
         return model;
     }

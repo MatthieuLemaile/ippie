@@ -33,10 +33,10 @@
 						<td>${compo.name}</td>
 						<td>${compo.introduced }</td>
 						<td>${compo.discontinued }</td>
-						<td>${compo.state.name }</td>
+						<td>${compo.state }</td>
 						<td>${compo.stateDetails }</td>
-						<td>${compo.model.type.name }</td>
-						<td>${compo.model.name }</td>
+						<td>${compo.type }</td>
+						<td>${compo.model }</td>
 						<td>${compo.details }</td>
 					</tr>
 				</c:forEach>
