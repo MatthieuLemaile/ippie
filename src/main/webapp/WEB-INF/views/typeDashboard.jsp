@@ -11,25 +11,26 @@
 <title>Dashboard</title>
 </head>
 <body>
+	<jsp:include page="header.jsp"/>
 	<div class="container">
-	<h1>Type</h1>
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>Name</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${requestScope.types}" var="type">
-							<tr>
-								<td>${type.id}</td>
-								<td>${type.name}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				</div>
+		<h1>Type</h1>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${requestScope.types}" var="type">
+					<tr>
+						<td>${type.id}</td>
+						<td>${type.name}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>

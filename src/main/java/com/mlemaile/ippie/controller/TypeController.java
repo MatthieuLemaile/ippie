@@ -14,12 +14,12 @@ import com.mlemaile.ippie.service.ServiceType;
 public class TypeController {
 
     @Autowired
-    ServiceType serviceType;
+    private ServiceType serviceType;
 
-    @GetMapping({ "/typeDashboard", "/" })
+    @GetMapping("/typeDashboard")
     public ModelAndView displayAllType () {
         ModelAndView model = new ModelAndView();
-        model.setViewName("typeView");
+        model.setViewName("typeDashboard");
         List<Type> types = serviceType.findAll();
         model.addObject("types", types);
         return model;

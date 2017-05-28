@@ -12,7 +12,7 @@ import com.mlemaile.ippie.persistence.TypeDao;
 public class ServiceType {
 
     @Autowired
-    TypeDao typeDao;
+    private TypeDao typeDao;
 
     public List<Type> findAll () {
         return typeDao.findAll();
