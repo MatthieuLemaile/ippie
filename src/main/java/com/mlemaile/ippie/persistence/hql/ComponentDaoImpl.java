@@ -21,13 +21,13 @@ public class ComponentDaoImpl implements ComponentDao {
 
     @Override
     public Optional<Component> save ( Component c ) {
-        // TODO Auto-generated method stub
+        // TODO ComponentDao
         return null;
     }
 
     @Override
     public Optional<Component> findOne ( long id ) {
-        // TODO Auto-generated method stub
+        // TODO ComponentDao
         return null;
     }
 
@@ -38,7 +38,7 @@ public class ComponentDaoImpl implements ComponentDao {
 
     @Override
     public void delete ( long id ) {
-        // TODO Auto-generated method stub
+        // TODO ComponentDao
 
     }
 
