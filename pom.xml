@@ -12,7 +12,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
 		<junit.version>4.12</junit.version>
+		<dbunit.version>2.4.9</dbunit.version>
+		<apacheCommonsConfiguration.version>2.0</apacheCommonsConfiguration.version>
+		<apacheCommonsBeanutils.version>1.9.3</apacheCommonsBeanutils.version>
+		
 
 		<slf4j.version>1.7.25</slf4j.version>
 		<logback.version>1.2.3</logback.version>
@@ -23,7 +28,7 @@
 
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<mariadb.version>1.5.9</mariadb.version>
-		
+
 		<hibernate.version>5.2.10.Final</hibernate.version>
 		<hikari.version>2.6.1</hikari.version>
 	</properties>
@@ -33,6 +38,25 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>${dbunit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-configuration2</artifactId>
+			<version>${apacheCommonsConfiguration.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>${apacheCommonsBeanutils.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -105,9 +129,9 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-   			<groupId>org.springframework</groupId>
-   			<artifactId>spring-orm</artifactId>
-    		<version>${spring.version}</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -135,9 +159,9 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<dependency>
-				<groupId>com.zaxxer</groupId>
-				<artifactId>HikariCP</artifactId>
-				<version>${hikari.version}</version>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${hikari.version}</version>
 		</dependency>
 
 	</dependencies>

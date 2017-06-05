@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<dataset> 
+	<type id="1" name="RAM" />
+	<type id="2" name="PROC" />
+	<type id="3" name="CM" />
+	<model id="1" name="E5500" type_id="2"/>
+	<model id="2" name="intel core i7 7700" type_id="2"/>
+	<model id="3" name="Corsair DDR3 2Go 1333MHz CAS9" type_id="1"/>
+	<model id="4" name="Kingston DDR3 4Go 1600MHz CAS11" type_id="1"/>
+	<model id="5" name="Asus PK 5KLM" type_id="3"/>
+	<model id="6" name="Gigabyte B85" type_id="3"/>
+</dataset>
