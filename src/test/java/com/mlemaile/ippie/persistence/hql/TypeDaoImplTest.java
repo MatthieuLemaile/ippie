@@ -52,12 +52,9 @@ public class TypeDaoImplTest {
 
     @Test
     public void findAllShouldRetrieveAllTypeFromTheDb () {
-        Type t1 = new Type("RAM");
-        t1.setId(1);
-        Type t2 = new Type("PROC");
-        t2.setId(2);
-        Type t3 = new Type("CM");
-        t3.setId(3);
+        Type t1 = DatabaseObject.type1;
+        Type t2 = DatabaseObject.type2;
+        Type t3 = DatabaseObject.type3;
         List<Type> types = typeDao.findAll();
         assertEquals("Find all Types does not work properly.", 3, types.size());
         assertEquals("Find all Types does not work properly.", t1, types.get(0));

@@ -39,6 +39,22 @@ public class Component {
         this.name = name;
     }
 
+    public Component(String name,
+            LocalDate introduced,
+            LocalDate discontinued,
+            State state,
+            String stateDetails,
+            Model model,
+            String details) {
+        this(name);
+        this.setIntroduced(introduced);
+        this.setDiscontinued(discontinued);
+        this.setState(state);
+        this.setStateDetails(stateDetails);
+        this.setModel(model);
+        this.setDetails(details);
+    }
+
     public long getId() {
         return id;
     }

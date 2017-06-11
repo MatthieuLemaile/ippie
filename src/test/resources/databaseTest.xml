@@ -9,4 +9,105 @@
 	<model id="4" name="Kingston DDR3 4Go 1600MHz CAS11" type_id="1"/>
 	<model id="5" name="Asus PK 5KLM" type_id="3"/>
 	<model id="6" name="Gigabyte B85" type_id="3"/>
+	<state id="1" name="rangé" />
+	<component
+		id="1"
+		name="lacus. Nulla"
+		introduced="2015-10-04"
+		discontinued="2017-02-21"
+		state_id="1"
+		state_details="vehicula. Pellentesque tincidunt tempus"
+		model_id="4"
+		details="tempor arcu. Vestibulum ut eros non enim commodo hendrerit. Donec porttitor tellus non magna. Nam"
+	/>
+	<component
+		id="2"
+		name="convallis"
+		introduced="2014-11-24"
+		discontinued="2017-04-03"
+		state_id="1"
+		state_details="neque. Sed eget lacus. Mauris non dui nec urna"
+		model_id="2"
+		details="gravida non, sollicitudin"
+	/>
+	<component
+		id="3"
+		name="eu tellus."
+		introduced="2014-02-19"
+		discontinued="2016-11-25"
+		state_id="1"
+		state_details="purus ac tellus. Suspendisse sed dolor."
+		model_id="6"
+		details="leo. Vivamus nibh dolor, nonummy ac, feugiat non, lobortis quis, pede. Suspendisse dui. Fusce diam nunc, ullamcorper"
+	/>
+	<component
+		id="4"
+		name="nunc ac"
+		introduced="2014-07-05"
+		discontinued="2017-11-17"
+		state_id="1"
+		state_details="dictum eleifend, nunc risus varius orci, in consequat enim diam"
+		model_id="4"
+		details="molestie pharetra"
+	/>
+	<component
+		id="5"
+		name="consequat purus."
+		introduced="2014-05-07"
+		discontinued="2016-04-13"
+		state_id="1"
+		state_details="eros non enim commodo hendrerit. Donec porttitor tellus non magna."
+		model_id="4"
+		details="vel lectus. Cum sociis natoque penatibus et magnis dis parturient"
+	/>
+	<component
+		id="6"
+		name="odio. Phasellus"
+		introduced="2014-07-13"
+		discontinued="2016-01-24"
+		state_id="1"
+		state_details="erat vel pede blandit congue. In scelerisque scelerisque dui."
+		model_id="1"
+		details="interdum enim non nisi. Aenean eget metus. In nec orci. Donec nibh. Quisque nonummy ipsum non"
+	/>
+	<component
+		id="7"
+		name="sapien."
+		introduced="2014-08-24"
+		discontinued="2016-02-11"
+		state_id="1"
+		state_details="dictum ultricies ligula. Nullam enim. Sed nulla ante, iaculis nec,"
+		model_id="6"
+		details="nisl arcu iaculis"
+	/>
+	<component
+		id="8"
+		name="ultricies ligula."
+		introduced="2015-06-05"
+		discontinued="2017-08-31"
+		state_id="1"
+		state_details="nec urna et arcu"
+		model_id="6"
+		details="in faucibus orci luctus et ultrices posuere cubilia Curae; Phasellus ornare. Fusce mollis. Duis sit"
+	/>
+	<component
+		id="9"
+		name="faucibus"
+		introduced="2015-11-18"
+		discontinued="2016-06-09"
+		state_id="1"
+		state_details="Phasellus nulla. Integer"
+		model_id="1"
+		details="lectus rutrum urna, nec luctus felis purus ac tellus. Suspendisse sed dolor. Fusce mi lorem, vehicula et, rutrum eu, ultrices"
+	/>
+	<component
+		id="10"
+		name="sed, hendrerit a,"
+		introduced="2014-10-15"
+		discontinued="2017-08-28"
+		state_id="1"
+		state_details="at, velit. Pellentesque ultricies"
+		model_id="4"
+		details="lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor"
+	/>
 </dataset>
