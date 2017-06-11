@@ -13,8 +13,11 @@ import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DatabaseManagement {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DatabaseManagement.class);
 
     private static IDatabaseTester databaseTester;
     // Initializing databaseTester
@@ -36,12 +39,8 @@ public class DatabaseManagement {
                     + password + "&zeroDateTimeBehavior=" + zeroDataTimeBehavior;
 
             databaseTester = new JdbcDatabaseTester("org.mariadb.jdbc.Driver", url);
-        } catch (ConfigurationException e) {
-            // TODO LOG EXCEPTION (builder.getConfig())
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO LOG EXCEPTION (new JdbcData...)
-            e.printStackTrace();
+        } catch (ConfigurationException | ClassNotFoundException e) {
+            LOGGER.error("Error while configuring the database",e);
         }
     }
 
@@ -52,7 +51,7 @@ public class DatabaseManagement {
 
     public static void setUpDatabase () throws Exception {
         if (databaseTester == null) {
-            // TODO Custom exception
+            LOGGER.error("Failed to initialise the test database");
             throw new RuntimeException("Can't initilize the test database");
         }
         IDataSet dataSet = readDataSet();
