@@ -1,0 +1,2 @@
+Compiler le projet dans un war sans les tests :
+mvn package -DskipTest
