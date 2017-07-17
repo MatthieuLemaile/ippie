@@ -25,4 +25,24 @@ public class StateDto {
     public String toString () {
         return "StateDto [id=" + id + ", name=" + name + "]";
     }
+
+    @Override
+    public boolean equals ( Object obj ) {
+        if (this == obj)
+            return true;
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        StateDto other = (StateDto) obj;
+        if (id != other.id) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
+    }
 }

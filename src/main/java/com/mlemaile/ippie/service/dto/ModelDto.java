@@ -43,4 +43,34 @@ public class ModelDto {
         return "ModelDto [id=" + id + ", name=" + name + ", typeId=" + typeId + ", type="
                 + type + "]";
     }
+
+    @Override
+    public boolean equals ( Object obj ) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        ModelDto other = (ModelDto) obj;
+        if (id != other.id || typeId != other.typeId) {
+            return false;
+        }
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        if (type == null) {
+            if (other.type != null) {
+                return false;
+            }
+        } else if (!type.equals(other.type)) {
+            return false;
+        }
+        return true;
+    }
+
 }
