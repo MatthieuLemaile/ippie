@@ -1,4 +1,4 @@
-package com.mlemaile.ippie.persistence.hql;
+package com.mlemaile.ippie;
 
 import java.time.LocalDate;
 import java.time.Month;

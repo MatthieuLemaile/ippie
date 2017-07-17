@@ -17,9 +17,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.mlemaile.ippie.DatabaseObject;
 import com.mlemaile.ippie.core.Model;
 import com.mlemaile.ippie.persistence.ModelDao;
-import com.mlemaile.ippie.persistence.hql.DatabaseObject;
 import com.mlemaile.ippie.persistence.hql.PersistenceContext;
 import com.mlemaile.ippie.service.dto.ModelDto;
 import com.mlemaile.ippie.service.mapper.MapperModel;
