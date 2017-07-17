@@ -25,4 +25,17 @@ public class TypeDto {
     public String toString () {
         return "TypeDto [id=" + id + ", name=" + name + "]";
     }
+
+    @Override
+    public boolean equals ( Object obj ) {
+        if (obj == null || !(obj instanceof TypeDto)) {
+            return false;
+        }
+        TypeDto type = (TypeDto) obj;
+        if (type.name != null) {
+            return type.id == this.id && type.name.equals(this.name);
+        } else {
+            return type.id == this.id && this.name == null;
+        }
+    }
 }
