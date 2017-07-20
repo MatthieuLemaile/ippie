@@ -41,6 +41,8 @@ public class DatabaseManagement {
             databaseTester = new JdbcDatabaseTester("org.mariadb.jdbc.Driver", url);
         } catch (ConfigurationException | ClassNotFoundException e) {
             LOGGER.error("Error while configuring the database",e);
+            throw new TestDatabaseInitialisationException("Error while configuring the database",
+                    e);
         }
     }
 
@@ -51,8 +53,10 @@ public class DatabaseManagement {
 
     public static void setUpDatabase () throws Exception {
         if (databaseTester == null) {
-            LOGGER.error("Failed to initialise the test database");
-            throw new RuntimeException("Can't initilize the test database");
+            RuntimeException re = new TestDatabaseInitialisationException(
+                    "Can't initilize the test database");
+            LOGGER.error("Failed to initialise the test database", re);
+            throw re;
         }
         IDataSet dataSet = readDataSet();
         databaseTester.setSetUpOperation(DatabaseOperation.CLEAN_INSERT);
