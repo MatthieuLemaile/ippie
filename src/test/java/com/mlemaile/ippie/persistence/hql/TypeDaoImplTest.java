@@ -56,6 +56,22 @@ public class TypeDaoImplTest {
     }
 
     @Test
+    @Transactional
+    public void saveWithNullNameShouldReturnAnEmptyOptional () {
+        Optional<Type> optType = typeDao.save(new Type());
+        assertFalse("The save method does not check null object.", optType.isPresent());
+    }
+
+    @Test
+    @Transactional
+    public void saveWithEmptyNameShouldReturnAnEmptyOptional () {
+        Type t = new Type();
+        t.setName("");
+        Optional<Type> optType = typeDao.save(t);
+        assertFalse("The save method does not check null object.", optType.isPresent());
+    }
+
+    @Test
     public void testFindOne () {
         fail("Not yet implemented");
     }

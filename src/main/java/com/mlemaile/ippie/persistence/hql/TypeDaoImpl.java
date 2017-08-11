@@ -8,6 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Type;
@@ -19,6 +21,7 @@ public class TypeDaoImpl implements TypeDao {
     private static String HQL_SELECT_ALL      = "From Type";
     private static String HQL_FIND_BY_ID      = "Select t from Type as t where t.id = :id";
     private static String HQL_UPDATE_COMPUTER = "Update Type t set t.name=:name where t.id=:id";
+    private static final Logger LOGGER              = LoggerFactory.getLogger(TypeDao.class);
 
     @PersistenceContext
     EntityManager em;
@@ -26,12 +29,18 @@ public class TypeDaoImpl implements TypeDao {
     @Override
     @Transactional
     public Optional<Type> save ( Type t ) {
-        if (t == null) {
+        if (t == null || t.getName() == null || t.getName().trim().isEmpty()) {
             return Optional.empty();
         }
         if (t.getId() == 0) {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Creating type in the database : " + t);
+            }
             return create(t);
         } else {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Updating type in the database : " + t);
+            }
             return update(t);
         }
     }
@@ -65,6 +74,9 @@ public class TypeDaoImpl implements TypeDao {
     @Override
     public void delete ( long id ) {
         Type t = this.em.find(Type.class, id);
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Deleting type from the database : " + t);
+        }
         this.em.remove(t);
         // TODO take care of the IllegalArgumentException
     }

@@ -63,8 +63,15 @@ public class ServiceTypeTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void saveShouldThrowAnIAEWhenDtoNameIsNullOrEmpty () {
+    public void saveShouldThrowAnIAEWhenDtoNameIsNull () {
         serviceType.save(new TypeDto());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void saveShouldThrowAnIAEWhenDtoNameIsEmpty () {
+        TypeDto type = new TypeDto();
+        type.setName("");
+        serviceType.save(type);
     }
 
     @Test
