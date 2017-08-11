@@ -23,7 +23,6 @@ public enum MapperType {
 
     /**
      * This method map a List of Type to a List of TypeDtos.
-     * 
      * @param types
      *            the List of Type to map
      * @return The List of mapped dtos.
@@ -34,5 +33,17 @@ public enum MapperType {
             dtos.add(toDto(type));
         });
         return dtos;
+    }
+
+    /**
+     * This method map a TypeDto to the corresponding Type.
+     * @param dto
+     *            the dto to map
+     * @return The corresponding Type
+     */
+    public Type toModel ( TypeDto dto ) {
+        Type type = new Type(dto.getName());
+        type.setId(dto.getId());
+        return type;
     }
 }

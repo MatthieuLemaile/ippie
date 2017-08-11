@@ -8,9 +8,12 @@ import com.mlemaile.ippie.core.Type;
 public interface TypeDao {
 
     /**
-     * This method update or create (depending on whether the id is set) the given Type.
-     * @param t the Type to update or create.
-     * @return The saved computer
+     * This method update or create (depending on whether the id is set) the
+     * given Type.
+     * 
+     * @param t
+     *            the Type to update or create.
+     * @return The saved type
      */
     public Optional<Type> save(Type t);
 

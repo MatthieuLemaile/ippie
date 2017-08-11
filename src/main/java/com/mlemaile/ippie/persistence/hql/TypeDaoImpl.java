@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
 
@@ -23,9 +24,11 @@ public class TypeDaoImpl implements TypeDao {
     EntityManager em;
 
     @Override
+    @Transactional
     public Optional<Type> save ( Type t ) {
-        // TODO DAO VERIF
-        // Here goes some verification about the object
+        if (t == null) {
+            return Optional.empty();
+        }
         if (t.getId() == 0) {
             return create(t);
         } else {

@@ -1,9 +1,11 @@
 package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -44,6 +46,13 @@ public class TypeDaoImplTest {
         Type t = new Type("Essai");
         t = typeDao.save(t).get();
         assertEquals("Save does not work properly", t, typeDao.findOne(t.getId()).get());
+    }
+
+    @Test
+    @Transactional
+    public void saveNullShouldReturnAnEmptyOptional () {
+        Optional<Type> optType = typeDao.save(null);
+        assertFalse("The save method does not check null object.", optType.isPresent());
     }
 
     @Test

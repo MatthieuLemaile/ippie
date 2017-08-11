@@ -1,9 +1,12 @@
 package com.mlemaile.ippie.service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.mlemaile.ippie.DatabaseObject;
 import com.mlemaile.ippie.core.Type;
 import com.mlemaile.ippie.persistence.TypeDao;
 import com.mlemaile.ippie.persistence.hql.PersistenceContext;
@@ -51,6 +55,34 @@ public class ServiceTypeTest {
         List<TypeDto> returnedList = serviceType.findAll();
         assertEquals("The returned list does not match the given one.",
                 MapperType.INSTANCE.toListDto(list), returnedList);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void saveShouldThrowAnIAEWhenDtoIsNull () {
+        serviceType.save(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void saveShouldThrowAnIAEWhenDtoNameIsNullOrEmpty () {
+        serviceType.save(new TypeDto());
+    }
+
+    @Test
+    public void saveShouldReturnTrueWhenDaoOk(){
+        Type type = DatabaseObject.type1;
+        Optional<Type> optType = Optional.of(type);
+        Mockito.when(typeDao.save(type)).thenReturn(optType);
+        boolean response = serviceType.save(MapperType.INSTANCE.toDto(type));
+        assertTrue("The service response is not the expected one.", response);
+    }
+
+    @Test
+    public void saveShouldReturnFalseWhenDaoNotOk () {
+        Type type = DatabaseObject.type1;
+        Optional<Type> optType = Optional.empty();
+        Mockito.when(typeDao.save(type)).thenReturn(optType);
+        boolean response = serviceType.save(MapperType.INSTANCE.toDto(type));
+        assertFalse("The service response is not the expected one.", response);
     }
 
 }

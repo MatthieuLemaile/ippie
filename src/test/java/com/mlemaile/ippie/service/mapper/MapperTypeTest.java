@@ -35,6 +35,16 @@ public class MapperTypeTest {
         compare(type2, returnedList.get(1));
     }
 
+    @Test
+    public void testToModel () {
+        TypeDto dto = new TypeDto();
+        dto.setName("name");
+        dto.setId(5);
+        Type returned = MapperType.INSTANCE.toModel(dto);
+        assertNotNull(returned);
+        compare(returned, dto);
+    }
+
     private void compare ( Type type, TypeDto dto ) {
         assertEquals("the name is not correctly mapped", type.getName(), dto.getName());
         assertEquals("The id is not correctly mapped", type.getId(), dto.getId());
