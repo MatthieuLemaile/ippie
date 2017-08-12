@@ -18,14 +18,11 @@ public class ComponentController {
 
     @GetMapping({ "componentDashboard", "/" })
     public ModelAndView DisplayComponent () {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("DEBUGGING");
-        }
-        if (LOGGER.isWarnEnabled()) {
-            LOGGER.warn("WARNING");
-        }
         ModelAndView model = new ModelAndView();
         model.setViewName("componentDashboard");
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Retrieving and displaying all Component");
+        }
         model.addObject("components", serviceComponent.findAll());
         return model;
     }

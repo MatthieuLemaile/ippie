@@ -15,6 +15,9 @@ public enum MapperType {
      * @return the corresponding dto
      */
     public TypeDto toDto ( Type t ) {
+        if (t == null) {
+            throw new MapperException("The given type is null");
+        }
         TypeDto dto = new TypeDto();
         dto.setId(t.getId());
         dto.setName(t.getName());
@@ -42,6 +45,9 @@ public enum MapperType {
      * @return The corresponding Type
      */
     public Type toModel ( TypeDto dto ) {
+        if (dto == null) {
+            throw new MapperException("The given dto is null");
+        }
         Type type = new Type(dto.getName());
         type.setId(dto.getId());
         return type;

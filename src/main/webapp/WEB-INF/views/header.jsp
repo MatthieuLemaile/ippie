@@ -1,6 +1,7 @@
 <div class="container">
 	<nav>
 		<div class="btn-group" role="group">
+
 			<div class="btn-group" role="group">
 				<button type="button" class="btn btn-default dropdown-toggle"
 					data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -9,7 +10,7 @@
 				<ul class="dropdown-menu">
 					<li><a
 						href="${pageContext.request.contextPath }/modelDashboard">Dashboard</a></li>
-					<li><a href="${pageContext.request.contextPath }/#">Add</a></li>
+					<li><a href="${pageContext.request.contextPath }/addType">Add</a></li>
 				</ul>
 			</div>
 			
@@ -21,7 +22,7 @@
 				<ul class="dropdown-menu">
 					<li><a
 						href="${pageContext.request.contextPath }/componentDashboard">Dashboard</a></li>
-					<li><a href="${pageContext.request.contextPath }/#">Add</a></li>
+					<li><a href="${pageContext.request.contextPath }/addType">Add</a></li>
 				</ul>
 			</div>
 			
@@ -37,6 +38,5 @@
 				</ul>
 			</div>
 		</div>
-
 	</nav>
 </div>

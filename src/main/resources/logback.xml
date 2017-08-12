@@ -17,7 +17,10 @@
   </appender>
   
 <logger name="org.hibernate" level="ERROR" />
-<logger name="com.zaxxer.hikari" level="INFO" />
+<logger name="com.zaxxer.hikari" level="ERROR" />
+<logger name="org.jboss.logging" level="ERROR" />
+
+<!-- //TODO: remove hikari's log -->
   
   <root level="debug">
     <appender-ref ref="RollingFile" />

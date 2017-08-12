@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Model;
@@ -18,6 +20,7 @@ public class ModelDaoImpl implements ModelDao {
     private static String HQL_SELECT_ALL = "From Model";
     private static String HQL_SELECT_BY_ID = "Select m from Model as m where m.id=:id";
     private static String HQL_UPDATE     = "Update Model m set m.name=:name, m.type=:type where m.id=:id";
+    private static final Logger LOGGER           = LoggerFactory.getLogger(ModelDao.class);
 
     @PersistenceContext
     private EntityManager em;
@@ -27,8 +30,14 @@ public class ModelDaoImpl implements ModelDao {
         // TODO DAO VERIF
         // Some verification about the object
         if (model.getId() == 0) {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Creating Model in the database : " + model);
+            }
             return create(model);
         } else {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Updating Model in the database : " + model);
+            }
             return update(model);
         }
     }
@@ -64,6 +73,9 @@ public class ModelDaoImpl implements ModelDao {
     public void delete ( long id ) {
         // TODO Handle IllegalArgumentException (find)
         Model m = em.find(Model.class, id);
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Deleting Model in the database : " + m);
+        }
         em.remove(m);
     }
 }

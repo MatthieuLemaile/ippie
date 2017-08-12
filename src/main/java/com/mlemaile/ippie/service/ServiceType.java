@@ -3,6 +3,8 @@ package com.mlemaile.ippie.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import com.mlemaile.ippie.service.mapper.MapperType;
 
 @Service
 public class ServiceType {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceType.class);
 
     @Autowired
     private TypeDao typeDao;
@@ -41,10 +44,23 @@ public class ServiceType {
                     "The given dto has a null or empty/white space name.");
         }
         Type type = MapperType.INSTANCE.toModel(dto);
+
+        if (LOGGER.isInfoEnabled()) {
+            LOGGER.info("Saving Type in the database : " + type);
+        }
+
         Optional<Type> optionalType = typeDao.save(type);
         if (optionalType.isPresent()) {
             dto = MapperType.INSTANCE.toDto(optionalType.get());
+
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Save successful for" + optionalType.get());
+            }
             return true;
+        }
+
+        if (LOGGER.isWarnEnabled()) {
+            LOGGER.warn("Can't save type : " + type);
         }
         return false;
     }

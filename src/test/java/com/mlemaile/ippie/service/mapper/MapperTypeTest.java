@@ -22,6 +22,11 @@ public class MapperTypeTest {
         compare(type1, returnedType);
     }
 
+    @Test(expected = MapperException.class)
+    public void toDtoShouldThrowMapperExceptionWithNullArgument () {
+        MapperType.INSTANCE.toDto(null);
+    }
+
     @Test
     public void testToListDto () {
         Type type1 = DatabaseObject.type1;
@@ -43,6 +48,11 @@ public class MapperTypeTest {
         Type returned = MapperType.INSTANCE.toModel(dto);
         assertNotNull(returned);
         compare(returned, dto);
+    }
+
+    @Test(expected = MapperException.class)
+    public void toModelShouldThrowExceptionWhenNullArgument () {
+        MapperType.INSTANCE.toModel(null);
     }
 
     private void compare ( Type type, TypeDto dto ) {
