@@ -34,12 +34,40 @@ public class MapperModelTest {
         compare(model2,returnedList.get(1));
     }
 
+    @Test(expected = MapperException.class)
+    public void toDtoShouldThrowAMapperExceptionWhenNullValue () {
+        MapperModel.INSTANCE.toDto(null);
+    }
+
+    @Test(expected = MapperException.class)
+    public void toModelShouldThrowMapperExceptionWithNullValue () {
+        MapperModel.INSTANCE.toModel(null);
+    }
+
+    @Test
+    public void testToModel () {
+        ModelDto dto = new ModelDto();
+        dto.setName("Name Model");
+        dto.setId(5);
+        dto.setType("Type name");
+        dto.setTypeId(1);
+        Model returned = MapperModel.INSTANCE.toModel(dto);
+        assertNotNull(returned);
+        compare(returned, dto);
+    }
+
     private void compare ( Model m, ModelDto dto ) {
-        assertEquals("The name is not correctly mapped", m.getName(), dto.getName());
-        assertEquals("The id is not correctly mapped", m.getId(), dto.getId());
-        assertEquals("The type's name is not correcty mapped", m.getType().getName(),
+        assertEquals("The name is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                m.getName(), dto.getName());
+        assertEquals("The id is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                m.getId(), dto.getId());
+        assertEquals(
+                "The type's name is not correcty mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                m.getType().getName(),
                 dto.getType());
-        assertEquals("The type's id is not correctly mapped", m.getType().getId(), dto.getTypeId());
+        assertEquals(
+                "The type's id is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                m.getType().getId(), dto.getTypeId());
     }
 
 }

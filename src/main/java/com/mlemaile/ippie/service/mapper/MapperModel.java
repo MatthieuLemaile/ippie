@@ -17,6 +17,9 @@ public enum MapperModel {
      * @return The corresponding dto.
      */
     public ModelDto toDto ( Model m ) {
+        if (m == null) {
+            throw new MapperException("The given model is null");
+        }
         ModelDto dto = new ModelDto();
         dto.setId(m.getId());
         dto.setName(m.getName());
