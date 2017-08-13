@@ -27,7 +27,6 @@ public class TypeController {
 
     @Autowired
     private TypeValidator typeValidator;
-
     @Autowired
     private ServiceType serviceType;
 

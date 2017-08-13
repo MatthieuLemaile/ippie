@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class ModelDaoImpl implements ModelDao {
     @PersistenceContext
     private EntityManager em;
 
+    @Transactional
     @Override
     public Optional<Model> save ( Model model ) {
         // TODO DAO VERIF what about a null name ? and a null Type ?
