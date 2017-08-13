@@ -27,7 +27,7 @@ public class ModelDaoImpl implements ModelDao {
 
     @Override
     public Optional<Model> save ( Model model ) {
-        // TODO DAO VERIF
+        // TODO DAO VERIF what about a null name ? and a null Type ?
         // Some verification about the object
         if (model.getId() == 0) {
             if (LOGGER.isInfoEnabled()) {
