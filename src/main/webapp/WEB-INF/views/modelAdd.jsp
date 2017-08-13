@@ -40,7 +40,7 @@
 				</div>
 				
 				<div class="form-group">
-					<form:label path="name">
+					<form:label path="typeId">
 								Type :
 							</form:label>
 
