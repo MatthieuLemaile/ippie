@@ -9,17 +9,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mlemaile.ippie.DatabaseObject;
 import com.mlemaile.ippie.core.Component;
 import com.mlemaile.ippie.service.dto.ComponentDto;
 
 public class MapperComponentTest {
+    @Autowired
+    private MapperComponent mapperComponent;
 
     @Test
     public void testToDto () {
         Component component = DatabaseObject.component1;
-        ComponentDto dto = MapperComponent.INSTANCE.toDto(component);
+        ComponentDto dto = mapperComponent.toDto(component);
         compare(component, dto);
     }
 
@@ -28,7 +31,7 @@ public class MapperComponentTest {
         Component component1 = DatabaseObject.component1;
         Component component2 = DatabaseObject.component2;
         List<Component> list = Arrays.asList(component1, component2);
-        List<ComponentDto> returnedList = MapperComponent.INSTANCE.toListDto(list);
+        List<ComponentDto> returnedList = mapperComponent.toListDto(list);
         assertNotNull(returnedList);
         assertEquals("The returned list does not match the excpected Size", list.size(),
                 returnedList.size());

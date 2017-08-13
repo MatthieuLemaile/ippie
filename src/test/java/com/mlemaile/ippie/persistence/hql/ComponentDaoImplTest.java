@@ -1,9 +1,15 @@
 package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -36,14 +42,33 @@ public class ComponentDaoImplTest {
         DatabaseManagement.tearDownDatabase();
     }
 
+    @Transactional
     @Test
     public void testSave () {
-        fail("Not yet implemented");
+        Component c = new Component("Compo 1");
+        c.setDetails("This is a test component");
+        c.setModel(DatabaseObject.model1);
+        c.setIntroduced(LocalDate.of(2017, Month.AUGUST, 12));
+        c.setDiscontinued(LocalDate.of(2017, Month.AUGUST, 12));
+        c.setState(DatabaseObject.state1);
+        c.setStateDetails("Nothing to add");
+        componentDao.save(c);
+        Optional<Component> optCompo = componentDao.findOne(c.getId());
+        assertTrue(optCompo.isPresent());
+        assertEquals("Save does not work properly", c, optCompo.get());
     }
 
     @Test
+    public void saveShouldReturnEmptyResultForNullValue () {
+        assertFalse("Save does not return an empty result for null value.",
+                componentDao.save(null).isPresent());
+    }
+
+    // TODO Finish UT on save for component
+
+    @Test
     public void testFindOne () {
-        fail("Not yet implemented");
+        // TODO implement this test
     }
 
     @Test
@@ -74,7 +99,7 @@ public class ComponentDaoImplTest {
 
     @Test
     public void testDelete () {
-        fail("Not yet implemented");
+        // TODO Implement thos test
     }
 
 }
