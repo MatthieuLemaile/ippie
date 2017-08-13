@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<title>Ajout Type</title>
+<title>Ajout Model</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="container">
-		<h1>Add Type</h1>
+		<h1>Add Model</h1>
 
 		<c:if test="${not empty requestScope.errors}">
 			<%--Display with a List of ObjectError --%>
@@ -28,15 +28,30 @@
 			</c:forEach>
 		</c:if>
 
-		<form:form method="POST" action="addType" modelAttribute="TypeDto">
+		<form:form method="POST" action="addModel" modelAttribute="ModelDto">
 			<fieldset>
+				<div class="form-group">
+					<form:label path="name">
+								Model :
+							</form:label>
+
+					<form:input path="name" type="text" class="form-control" id="name"
+						placeholder="Model" required="required" autofocus="autofocus" />
+				</div>
+				
 				<div class="form-group">
 					<form:label path="name">
 								Type :
 							</form:label>
 
-					<form:input path="name" type="text" class="form-control" id="name"
-						placeholder="Type" required="required" autofocus="autofocus" />
+					<form:select class="form-control" path="typeId" id="typeId">
+								<form:option value="0">--</form:option>
+								<c:forEach var="type" items="${requestScope.types}">
+									<form:option value="${type.id}">
+										<c:out value="${type.name}" />
+									</form:option>
+								</c:forEach>
+					</form:select>
 				</div>
 			</fieldset>
 			<div class="actions pull-right">

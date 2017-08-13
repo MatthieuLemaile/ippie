@@ -37,23 +37,35 @@ public class MapperComponentTest {
     }
 
     private void compare ( Component component, ComponentDto dto ) {
-        assertEquals("The name is not correctly mapped", component.getName(), dto.getName());
-        assertEquals("The id is not correctly mapped", component.getId(), dto.getId());
+        assertEquals("The name is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getName(), dto.getName());
+        assertEquals("The id is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getId(), dto.getId());
         compareDate(component.getIntroduced(), dto.getIntroduced());
         compareDate(component.getDiscontinued(), dto.getDiscontinued());
-        assertEquals("The details are not correctly mapped", component.getDetails(),
+        assertEquals("The details are not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getDetails(),
                 dto.getDetails());
-        assertEquals("The State's details are not correctly mapped", component.getStateDetails(),
+        assertEquals(
+                "The State's details are not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getStateDetails(),
                 dto.getStateDetails());
-        assertEquals("The state name is not correctly mapped", component.getState().getName(),
+        assertEquals(
+                "The state name is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getState().getName(),
                 dto.getState());
-        assertEquals("The state id is not correctly mapped", component.getState().getId(),
+        assertEquals("The state id is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getState().getId(),
                 dto.getStateId());
-        assertEquals("The type name is not correctly mapped",
+        assertEquals(
+                "The type name is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
                 component.getModel().getType().getName(), dto.getType());
-        assertEquals("The model name is not correctly mapped", component.getModel().getName(),
+        assertEquals(
+                "The model name is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getModel().getName(),
                 dto.getModel());
-        assertEquals("The model id is not correctly mapped", component.getModel().getId(),
+        assertEquals("The model id is not correctly mapped [EXPECTED AND ACTUAL MIGHT BE REVERSED]",
+                component.getModel().getId(),
                 dto.getModelId());
     }
 

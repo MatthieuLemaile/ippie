@@ -1,9 +1,11 @@
 package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertFalse;
 
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.junit.After;
 import org.junit.Before;
@@ -36,14 +38,27 @@ public class ModelDaoImplTest {
         DatabaseManagement.tearDownDatabase();
     }
 
+    @Transactional
     @Test
-    public void testSave () {
-        fail("Not yet implemented");
+    public void saveShouldPutACorrectModelInTheDb () {
+        Model model = new Model("model");
+        model.setType(DatabaseObject.type1);
+        modelDao.save(model);
+        assertEquals("Save does not work properly", model, modelDao.findOne(model.getId()).get());
     }
+
+    @Transactional
+    @Test
+    public void saveShouldReturnEmptyResultWithNullValue () {
+        assertFalse("Save does not return an empty result for null value",
+                modelDao.save(null).isPresent());
+    }
+
+    // TODO Finish UT on save for model
 
     @Test
     public void testFindOne () {
-        fail("Not yet implemented");
+        // TODO implement this test
     }
 
     @Test
@@ -66,7 +81,7 @@ public class ModelDaoImplTest {
 
     @Test
     public void testDelete () {
-        fail("Not yet implemented");
+        // TODO implement this test
     }
 
 }

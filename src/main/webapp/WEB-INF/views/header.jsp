@@ -10,7 +10,7 @@
 				<ul class="dropdown-menu">
 					<li><a
 						href="${pageContext.request.contextPath }/modelDashboard">Dashboard</a></li>
-					<li><a href="${pageContext.request.contextPath }/addType">Add</a></li>
+					<li><a href="${pageContext.request.contextPath }/addModel">Add</a></li>
 				</ul>
 			</div>
 			
@@ -22,7 +22,7 @@
 				<ul class="dropdown-menu">
 					<li><a
 						href="${pageContext.request.contextPath }/componentDashboard">Dashboard</a></li>
-					<li><a href="${pageContext.request.contextPath }/addType">Add</a></li>
+					<li><a href="${pageContext.request.contextPath }/addComponent">Add</a></li>
 				</ul>
 			</div>
 			

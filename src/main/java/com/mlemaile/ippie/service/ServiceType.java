@@ -31,8 +31,7 @@ public class ServiceType {
 
     /**
      * This method either save or update the type in the database.
-     * @param dto
-     *            the Type to save/update
+     * @param dto the Type to save/update
      * @return a boolean which is true if the operation went well
      */
     public boolean save ( TypeDto dto ) {
