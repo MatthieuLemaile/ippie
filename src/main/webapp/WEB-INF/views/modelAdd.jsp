@@ -55,7 +55,7 @@
 				</div>
 			</fieldset>
 			<div class="actions pull-right">
-				<input type="submit" value="Add type" id="submit"
+				<input type="submit" value="Add Model" id="submit"
 					class="btn btn-primary"> or <a
 					href="${pageContext.request.contextPath}/homepage"
 					class="btn btn-default">Cancel </a>
