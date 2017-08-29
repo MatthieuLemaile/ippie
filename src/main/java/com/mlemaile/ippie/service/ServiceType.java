@@ -29,6 +29,15 @@ public class ServiceType {
         return MapperType.INSTANCE.toListDto(typeDao.findAll());
     }
 
+    public TypeDto findOne ( long id ) {
+        if (id < 0) {
+            throw new IllegalArgumentException("The id must be positive.");
+        }
+        Type type = typeDao.findOne(id)
+                .orElseThrow( () -> new IllegalArgumentException("The given id does not exists"));
+        return MapperType.INSTANCE.toDto(type);
+    }
+
     /**
      * This method either save or update the type in the database.
      * @param dto the Type to save/update

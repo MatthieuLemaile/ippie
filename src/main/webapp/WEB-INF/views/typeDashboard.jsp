@@ -13,6 +13,19 @@
 <body>
 	<jsp:include page="header.jsp"/>
 	<div class="container">
+	
+	<c:if test="${not empty requestScope.errors}">
+			<%--Display with a List of ObjectError --%>
+			<c:forEach var="error" items="${requestScope.errors}">
+				<div class="container">
+					<div class="alert alert-danger">
+						<c:out value="${error.getCode()}" />
+					</div>
+				</div>
+
+			</c:forEach>
+		</c:if>
+	
 		<h1>Type</h1>
 		<table class="table table-bordered">
 			<thead>

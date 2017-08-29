@@ -1,6 +1,8 @@
 package com.mlemaile.ippie.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mlemaile.ippie.service.ServiceType;
@@ -23,12 +26,13 @@ import com.mlemaile.ippie.service.dto.TypeDto;
 
 @Controller
 public class TypeController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(TypeController.class);
+    private static final Logger LOGGER        = LoggerFactory.getLogger(TypeController.class);
+    private static final String PARAM_TYPE_ID = "typeID";
 
     @Autowired
     private TypeValidator typeValidator;
     @Autowired
-    private ServiceType serviceType;
+    private ServiceType   serviceType;
 
     @InitBinder
     protected void initBinder ( final WebDataBinder binder ) {
@@ -40,6 +44,7 @@ public class TypeController {
 
     /**
      * Method retrieving and displaying all Type
+     * 
      * @return A ModelAndView for the typeDashboard, with all component.
      */
     @GetMapping("/typeDashboard")
@@ -63,8 +68,11 @@ public class TypeController {
 
     /**
      * Method used to save the given type
-     * @param typeDto The type to save
-     * @param result contain errors if validation went wrong
+     * 
+     * @param typeDto
+     *            The type to save
+     * @param result
+     *            contain errors if validation went wrong
      * @return either the dashboard of the form for adding a type.
      */
     @PostMapping("addType")
@@ -86,5 +94,27 @@ public class TypeController {
         }
         return model;
 
+    }
+
+    @GetMapping("editType")
+    public ModelAndView displayEditType ( @ModelAttribute("TypeDto") TypeDto typeDto,
+            @RequestParam(value = PARAM_TYPE_ID, required = false) String typeIdStr ) {
+        ModelAndView model = new ModelAndView();
+        Map<String, String> errors = new HashMap<>();
+        long typeId = 0;
+        try {
+            if (typeIdStr != null) {
+                typeId = Long.parseLong(typeIdStr);
+            }
+            TypeDto dto = serviceType.findOne(typeId);
+            model.addObject("type", dto);
+        } catch (IllegalArgumentException e) {
+            errors.put("Error", e.getMessage());
+            model.setViewName("typeDashboard");
+            model.addObject("errors", errors);
+            List<TypeDto> types = serviceType.findAll();
+            model.addObject("types", types);
+        }
+        return model;
     }
 }
