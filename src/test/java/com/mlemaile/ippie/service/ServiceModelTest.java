@@ -22,6 +22,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.mlemaile.ippie.DatabaseObject;
 import com.mlemaile.ippie.core.Model;
+import com.mlemaile.ippie.core.Type;
 import com.mlemaile.ippie.persistence.ModelDao;
 import com.mlemaile.ippie.persistence.hql.PersistenceContext;
 import com.mlemaile.ippie.service.dto.ModelDto;
@@ -95,4 +96,27 @@ public class ServiceModelTest {
         assertFalse("Service does not return false when Dao nok", response);
     }
 
+    @Test
+    public void findOneShouldBeOkWhenDaoOk () {
+        String name = "Test";
+        Type t = DatabaseObject.type1;
+        Optional<Model> modelOpt = Optional.of(new Model(name, t));
+        Mockito.when(modelDao.findOne(5)).thenReturn(modelOpt);
+        ModelDto modelDto = serviceModel.findOne(5L);
+        assertEquals("Find one did not return the result provided by the dao", name,
+                modelDto.getName());
+        assertEquals("Find one did not return the result provided by the dao", t.getName(),
+                modelDto.getType());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findOneShouldBeNokWhenDaoNok () {
+        Mockito.when(modelDao.findOne(5)).thenReturn(Optional.empty());
+        serviceModel.findOne(5L);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findOneShouldNotBeOkWhenIdLessThanZero () {
+        serviceModel.findOne(-5L);
+    }
 }

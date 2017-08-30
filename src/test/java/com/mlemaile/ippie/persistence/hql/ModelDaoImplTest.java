@@ -2,8 +2,10 @@ package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -54,11 +56,28 @@ public class ModelDaoImplTest {
                 modelDao.save(null).isPresent());
     }
 
-    // TODO Finish UT on save for model
+    @Transactional
+    @Test
+    public void saveShouldUpdateWhenModified () {
+        Model m1 = DatabaseObject.model1;
+        m1.setName(m1.getName() + "modified");
+        Optional<Model> modelOpt = modelDao.save(m1);
+        assertTrue("save didn't work as expected", modelOpt.isPresent());
+        assertEquals("Save didn't update the object",m1,modelOpt.get());
+    }
 
     @Test
-    public void testFindOne () {
-        // TODO implement this test
+    public void findOneShouldRetrieveCorrectlyAnObjectInDatabase () {
+        Optional<Model> modelOpt = modelDao.findOne(DatabaseObject.model1.getId());
+        assertTrue("find one does not work as expected",
+                modelOpt.isPresent());
+        assertEquals("Find one didn' retrieve the rigth object", DatabaseObject.model1,
+                modelOpt.get());
+    }
+
+    @Test
+    public void findOneShouldReturnEmptyOptionalForNonExistentObject () {
+        assertFalse("Find one does not work correctly", modelDao.findOne(-15L).isPresent());
     }
 
     @Test

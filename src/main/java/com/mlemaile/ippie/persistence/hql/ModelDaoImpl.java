@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -65,7 +66,11 @@ public class ModelDaoImpl implements ModelDao {
     public Optional<Model> findOne ( long id ) {
         TypedQuery<Model> query = em.createQuery(HQL_SELECT_BY_ID, Model.class);
         query.setParameter("id", id);
-        return Optional.ofNullable(query.getSingleResult());
+        try {
+            return Optional.ofNullable(query.getSingleResult());
+        } catch (NoResultException e) {
+            return Optional.empty();
+        }
     }
 
     @Override
