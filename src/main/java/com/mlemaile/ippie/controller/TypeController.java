@@ -123,7 +123,7 @@ public class TypeController {
     }
 
     @PostMapping("editType")
-    public ModelAndView editType ( @Valid @ModelAttribute("TypeDto") TypeDto typeDto,
+    public ModelAndView editType ( @Valid @ModelAttribute("typeDto") TypeDto typeDto,
             BindingResult result ) {
         ModelAndView model = new ModelAndView();
         if (result.hasErrors()) {
