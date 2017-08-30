@@ -20,8 +20,26 @@ public class ServiceModel {
     @Autowired
     private ModelDao modelDao;
 
+    /**
+     * This method find all Model.
+     * @return a List of All existing model
+     */
     public List<ModelDto> findAll () {
         return MapperModel.INSTANCE.toListDto(modelDao.findAll());
+    }
+    
+    /**
+     * This method find a Model based on his ID
+     * @param id the id of the model to find.
+     * @return A ModelDto if found.
+     */
+    public ModelDto findOne(Long id){
+        if (id < 0) {
+            throw new IllegalArgumentException("The id must be a positive number.");
+        }
+        Model model = modelDao.findOne(id)
+                .orElseThrow( () -> new IllegalArgumentException("This id does not exists"));
+        return MapperModel.INSTANCE.toDto(model);
     }
 
     /**

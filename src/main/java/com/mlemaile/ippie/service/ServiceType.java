@@ -22,13 +22,17 @@ public class ServiceType {
 
     /**
      * This method retrieve all Type from the database.
-     * 
      * @return The List of all TypeDto.
      */
     public List<TypeDto> findAll () {
         return MapperType.INSTANCE.toListDto(typeDao.findAll());
     }
 
+    /**
+     * This method find one type based on his ID.
+     * @param id The id of the type to find.
+     * @return a TypeDto if found.
+     */
     public TypeDto findOne ( long id ) {
         if (id < 0) {
             throw new IllegalArgumentException("The id must be positive.");
