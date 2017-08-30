@@ -2,6 +2,7 @@ package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,8 +74,17 @@ public class TypeDaoImplTest {
     }
 
     @Test
-    public void testFindOne () {
-        fail("Not yet implemented");
+    public void findOneShouldReturnATypeWhenCorrectId () {
+        Type t = DatabaseObject.type1;
+        Optional<Type> optType = typeDao.findOne(t.getId());
+        assertTrue("Find one does not work as intended", optType.isPresent());
+        assertEquals("Find one does not work as intented", t, optType.get());
+    }
+
+    @Test
+    public void findOneShouldReturnEmptyOptionalWhenWrongId () {
+        Optional<Type> optType = typeDao.findOne(456L);
+        assertFalse("Find one does not work as intended", optType.isPresent());
     }
 
     @Test
@@ -89,6 +100,7 @@ public class TypeDaoImplTest {
     }
 
     @Test
+    @Ignore
     public void testDelete () {
         fail("Not yet implemented");
     }
