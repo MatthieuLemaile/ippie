@@ -58,6 +58,20 @@ public class ComponentDaoImplTest {
         assertEquals("Save does not work properly", c, optCompo.get());
     }
 
+    @Transactional
+    @Test
+    public void saveShouldBeOkForUpdate () {
+        Component c = new Component();
+        c.setName("Name of test component");
+        Optional<Component> optCompo = componentDao.save(c);
+        assertTrue(optCompo.isPresent());
+        assertEquals("Save does not update correctly", c, optCompo.get());
+        c.setDetails("modified details");
+        optCompo = componentDao.save(c);
+        assertTrue(optCompo.isPresent());
+        assertEquals("Save does not update correctly", c, optCompo.get());
+    }
+
     @Test
     public void saveShouldReturnEmptyResultForNullValue () {
         assertFalse("Save does not return an empty result for null value.",

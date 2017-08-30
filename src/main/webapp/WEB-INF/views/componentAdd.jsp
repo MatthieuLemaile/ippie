@@ -60,8 +60,8 @@
 								Date d'acquisition :
 							</form:label>
 
-					<form:input path="introduced" type="text" class="form-control" id="introduced"
-						placeholder="YYYY-MM-DD" required="required"/>
+					<form:input path="introduced" type="date" class="form-control" id="introduced"
+						required="required"/>
 				</div>
 				
 				<div class="form-group">
@@ -69,8 +69,7 @@
 								Date de retrait :
 							</form:label>
 
-					<form:input path="discontinued" type="text" class="form-control" id="discontinued"
-						placeholder="YYYY-MM-DD"/>
+					<form:input path="discontinued" type="date" class="form-control" id="discontinued"/>
 				</div>
 				
 				<div class="form-group">
