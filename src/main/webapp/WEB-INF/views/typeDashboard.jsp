@@ -30,15 +30,15 @@
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Name</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${requestScope.types}" var="type">
 					<tr>
-						<td>${type.id}</td>
 						<td>${type.name}</td>
+						<td><a href='editType?type=<c:out value="${type.id}"/>'>edit</a>
 					</tr>
 				</c:forEach>
 			</tbody>

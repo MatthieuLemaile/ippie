@@ -27,7 +27,7 @@ import com.mlemaile.ippie.service.dto.TypeDto;
 @Controller
 public class TypeController {
     private static final Logger LOGGER        = LoggerFactory.getLogger(TypeController.class);
-    private static final String PARAM_TYPE_ID = "typeID";
+    private static final String PARAM_TYPE_ID = "type";
 
     @Autowired
     private TypeValidator typeValidator;
@@ -107,13 +107,38 @@ public class TypeController {
                 typeId = Long.parseLong(typeIdStr);
             }
             TypeDto dto = serviceType.findOne(typeId);
-            model.addObject("type", dto);
+            model.addObject("typeDto", dto);
+            model.setViewName("typeEdit");
         } catch (IllegalArgumentException e) {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Error while displaying edit type view : " + e.getMessage());
+            }
             errors.put("Error", e.getMessage());
             model.setViewName("typeDashboard");
             model.addObject("errors", errors);
             List<TypeDto> types = serviceType.findAll();
             model.addObject("types", types);
+        }
+        return model;
+    }
+
+    @PostMapping("editType")
+    public ModelAndView editType ( @Valid @ModelAttribute("TypeDto") TypeDto typeDto,
+            BindingResult result ) {
+        ModelAndView model = new ModelAndView();
+        if (result.hasErrors()) {
+            model.setViewName("typeEdit");
+            model.addObject("errors", result.getAllErrors());
+            if (LOGGER.isWarnEnabled()) {
+                LOGGER.warn("error while editing type " + typeDto + " errors : "
+                        + result.getAllErrors());
+            }
+        } else {
+            if (LOGGER.isInfoEnabled()) {
+                LOGGER.info("Editing type : " + typeDto);
+            }
+            serviceType.save(typeDto);
+            model.setViewName("redirect:/typeDashboard");
         }
         return model;
     }

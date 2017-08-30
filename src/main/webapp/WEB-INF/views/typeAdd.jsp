@@ -42,11 +42,9 @@
 			<div class="actions pull-right">
 				<input type="submit" value="Add type" id="submit"
 					class="btn btn-primary"> or <a
-					href="${pageContext.request.contextPath}/homepage"
+					href="${pageContext.request.contextPath}/typeDashboard"
 					class="btn btn-default">Cancel </a>
 			</div>
-			<input type="hidden" id="_csrf" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
 		</form:form>
 	</div>
 	<script
