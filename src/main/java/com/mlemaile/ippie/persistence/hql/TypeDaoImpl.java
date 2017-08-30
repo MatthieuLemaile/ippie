@@ -18,10 +18,10 @@ import com.mlemaile.ippie.persistence.TypeDao;
 @Repository
 public class TypeDaoImpl implements TypeDao {
 
-    private static String HQL_SELECT_ALL      = "From Type";
-    private static String HQL_FIND_BY_ID      = "Select t from Type as t where t.id = :id";
-    private static String HQL_UPDATE_COMPUTER = "Update Type t set t.name=:name where t.id=:id";
-    private static final Logger LOGGER              = LoggerFactory.getLogger(TypeDao.class);
+    private static String       HQL_SELECT_ALL  = "From Type";
+    private static String       HQL_FIND_BY_ID  = "Select t from Type as t where t.id = :id";
+    private static String       HQL_UPDATE_TYPE = "Update Type t set t.name=:name where t.id=:id";
+    private static final Logger LOGGER          = LoggerFactory.getLogger(TypeDao.class);
 
     @PersistenceContext
     EntityManager em;
@@ -46,7 +46,7 @@ public class TypeDaoImpl implements TypeDao {
     }
 
     private Optional<Type> update ( Type t ) {
-        em.createQuery(HQL_UPDATE_COMPUTER).setParameter("name", t.getName())
+        em.createQuery(HQL_UPDATE_TYPE).setParameter("name", t.getName())
                 .setParameter("id", t.getId()).executeUpdate();
         t = em.contains(t) ? t : em.merge(t);
         return Optional.ofNullable(t);

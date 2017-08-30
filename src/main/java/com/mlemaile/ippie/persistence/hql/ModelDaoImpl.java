@@ -18,9 +18,9 @@ import com.mlemaile.ippie.persistence.ModelDao;
 @Repository
 public class ModelDaoImpl implements ModelDao {
 
-    private static String HQL_SELECT_ALL = "From Model";
-    private static String HQL_SELECT_BY_ID = "Select m from Model as m where m.id=:id";
-    private static String HQL_UPDATE     = "Update Model m set m.name=:name, m.type=:type where m.id=:id";
+    private static String       HQL_SELECT_ALL   = "From Model";
+    private static String       HQL_SELECT_BY_ID = "Select m from Model as m where m.id=:id";
+    private static String       HQL_UPDATE_MODEL = "Update Model m set m.name=:name, m.type=:type where m.id=:id";
     private static final Logger LOGGER           = LoggerFactory.getLogger(ModelDao.class);
 
     @PersistenceContext
@@ -47,7 +47,7 @@ public class ModelDaoImpl implements ModelDao {
     }
 
     private Optional<Model> update ( Model m ) {
-        em.createQuery(HQL_UPDATE).setParameter("name", m.getName())
+        em.createQuery(HQL_UPDATE_MODEL).setParameter("name", m.getName())
                 .setParameter("type", m.getType()).setParameter("id", m.getId())
                 .executeUpdate();
         m = em.contains(m) ? m : em.merge(m);

@@ -26,9 +26,7 @@ public class ServiceModel {
 
     /**
      * This method either save or update the type in the database.
-     * 
-     * @param dto
-     *            the Type to save/update
+     * @param dto the Type to save/update
      * @return a boolean which is true if the operation went well
      */
     public boolean save ( ModelDto dto ) {
@@ -53,7 +51,7 @@ public class ServiceModel {
             dto = MapperModel.INSTANCE.toDto(optionalModel.get());
 
             if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Save successful for" + optionalModel.get());
+                LOGGER.info("Save successful for" + dto);
             }
             return true;
         }

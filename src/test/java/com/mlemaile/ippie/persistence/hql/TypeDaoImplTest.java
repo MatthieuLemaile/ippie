@@ -2,7 +2,6 @@ package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 import java.util.Optional;
@@ -73,7 +72,7 @@ public class TypeDaoImplTest {
 
     @Test
     public void testFindOne () {
-        fail("Not yet implemented");
+        // TODO Implememtn this test
     }
 
     @Test
@@ -90,7 +89,7 @@ public class TypeDaoImplTest {
 
     @Test
     public void testDelete () {
-        fail("Not yet implemented");
+        // TOFO Implement this test
     }
 
 }

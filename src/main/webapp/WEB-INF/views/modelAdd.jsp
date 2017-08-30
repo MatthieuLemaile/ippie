@@ -40,7 +40,7 @@
 				</div>
 				
 				<div class="form-group">
-					<form:label path="name">
+					<form:label path="typeId">
 								Type :
 							</form:label>
 
@@ -55,7 +55,7 @@
 				</div>
 			</fieldset>
 			<div class="actions pull-right">
-				<input type="submit" value="Add type" id="submit"
+				<input type="submit" value="Add Model" id="submit"
 					class="btn btn-primary"> or <a
 					href="${pageContext.request.contextPath}/modelDashboard"
 					class="btn btn-default">Cancel </a>
