@@ -19,6 +19,7 @@
 				<tr>
 					<th>Name</th>
 					<th>Type</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,7 @@
 					<tr>
 						<td>${model.name}</td>
 						<td>${model.type}</td>
+						<td><a href='editModel?modelId=<c:out value="${model.id}"/>'>edit</a>
 					</tr>
 				</c:forEach>
 			</tbody>
