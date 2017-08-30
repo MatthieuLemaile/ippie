@@ -92,4 +92,24 @@ public class ServiceTypeTest {
         assertFalse("The service response is not the expected one.", response);
     }
 
+    @Test
+    public void findOneShouldOkIfDaoOk () {
+        String name = "Test";
+        Optional<Type> typeOpt = Optional.of(new Type(name));
+        Mockito.when(typeDao.findOne(5L)).thenReturn(typeOpt);
+        TypeDto type = serviceType.findOne(5L);
+        assertEquals("The find one method is not working as intented", name, type.getName());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findOneShouldThrowIAEWhenDaoNok () {
+        Mockito.when(typeDao.findOne(5L)).thenReturn(Optional.empty());
+        serviceType.findOne(5L);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ShouldThrowIAEWhenIdLessThanZero () {
+        serviceType.findOne(-2L);
+    }
+
 }
