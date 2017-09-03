@@ -39,6 +39,8 @@
 						placeholder="Model" required="required" autofocus="autofocus" />
 				</div>
 				
+				<form:input path="id" type="hiddent" id="id" required="required"/>
+				
 				<div class="form-group">
 					<form:label path="typeId">
 								Type :

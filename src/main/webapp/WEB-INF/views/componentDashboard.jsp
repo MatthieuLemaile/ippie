@@ -18,12 +18,12 @@
 			<thead>
 				<tr>
 					<th>Name</th>
-					<th>introduced</th>
-					<th>discontinued</th>
-					<th>State</th>
-					<th>State Details</th>
 					<th>Type</th>
 					<th>model Name</th>
+					<th>State</th>
+					<th>State Details</th>
+					<th>introduced</th>
+					<th>discontinued</th>
 					<th>details</th>
 				</tr>
 			</thead>
@@ -31,16 +31,28 @@
 				<c:forEach items="${requestScope.components}" var="compo">
 					<tr>
 						<td>${compo.name}</td>
-						<td>${compo.introduced }</td>
-						<td>${compo.discontinued }</td>
-						<td>${compo.state }</td>
-						<td>${compo.stateDetails }</td>
 						<td>${compo.type }</td>
 						<td>${compo.model }</td>
+						<td>${compo.state }</td>
+						<td>${compo.stateDetails }</td>
+						<td>${compo.introduced }</td>
+						<td>${compo.discontinued }</td>						
 						<td>${compo.details }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
+			<tfooter>
+				<tr>
+					<th>Name</th>
+					<th>Type</th>
+					<th>model Name</th>
+					<th>State</th>
+					<th>State Details</th>
+					<th>introduced</th>
+					<th>discontinued</th>
+					<th>details</th>
+				</tr>
+			</tfooter>
 		</table>
 	</div>
 	<script

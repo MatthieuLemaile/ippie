@@ -59,11 +59,9 @@ public class ServiceModel {
             throw new IllegalArgumentException("The given dto has a non existant Type");
         }
         Model model = MapperModel.INSTANCE.toModel(dto);
-
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Saving Model in the database : " + model);
         }
-
         Optional<Model> optionalModel = modelDao.save(model);
         if (optionalModel.isPresent()) {
             dto = MapperModel.INSTANCE.toDto(optionalModel.get());
