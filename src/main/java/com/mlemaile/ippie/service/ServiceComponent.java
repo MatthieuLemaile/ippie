@@ -61,4 +61,13 @@ public class ServiceComponent {
         }
         return false;
     }
+
+    public ComponentDto findOne ( long componentId ) {
+        if (componentId <= 0) {
+            throw new IllegalArgumentException("The provided Id must be greater than 0");
+        }
+        return mapperComponent.toDto(componentDao.findOne(componentId).orElseThrow( () -> {
+            return new IllegalArgumentException("The corresponding Component does not exeists.");
+        }));
+    }
 }

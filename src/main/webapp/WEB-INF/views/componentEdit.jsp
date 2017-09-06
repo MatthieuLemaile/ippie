@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<title>Ajout Composant</title>
+<title>Edition d'un Composant</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 	<div class="container">
-		<h1>Ajout composant</h1>
+		<h1>Édition du composant</h1>
 
 		<c:if test="${not empty requestScope.errors}">
 			<%--Display with a List of ObjectError --%>
@@ -28,8 +28,10 @@
 			</c:forEach>
 		</c:if>
 
-		<form:form method="POST" action="addComponent" modelAttribute="ComponentDto">
+		<form:form method="POST" action="editComponent" modelAttribute="ComponentDto">
 			<fieldset>
+				<form:input path="id" type="hidden" id="id" required="required" />
+				
 				<div class="form-group">
 					<form:label path="name">
 								Composant :
@@ -107,7 +109,7 @@
 				
 			</fieldset>
 			<div class="actions pull-right">
-				<input type="submit" value="Add Component" id="submit"
+				<input type="submit" value="Edit Component" id="submit"
 					class="btn btn-primary"> or <a
 					href="${pageContext.request.contextPath}/homepage"
 					class="btn btn-default">Cancel </a>

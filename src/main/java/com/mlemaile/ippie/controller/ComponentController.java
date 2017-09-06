@@ -1,6 +1,8 @@
 package com.mlemaile.ippie.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mlemaile.ippie.service.ComponentValidator;
@@ -28,6 +31,7 @@ import com.mlemaile.ippie.service.dto.StateDto;
 @Controller
 public class ComponentController {
     private static final Logger LOGGER = LoggerFactory.getLogger(ComponentController.class);
+    private static final String PARAM_COMPONENT_ID = "ComponentId";
 
     @Autowired
     private ServiceComponent serviceComponent;
@@ -81,10 +85,8 @@ public class ComponentController {
             componentDto.setStateDetails(componentDto.getStateDetails() + "ö");
             model.setViewName("componentAdd");
             model.addObject("errors", result.getAllErrors());
-            List<ModelDto> models = serviceModel.findAll();
-            List<StateDto> states = serviceState.findAll();
-            model.addObject("states", states);
-            model.addObject("models", models);
+            model.addObject("states", serviceState.findAll());
+            model.addObject("models", serviceModel.findAll());
         } else {
             if (LOGGER.isInfoEnabled()) {
                 LOGGER.info("Saving component : " + componentDto);
@@ -92,6 +94,31 @@ public class ComponentController {
             serviceComponent.save(componentDto);
             model.addObject("components", serviceComponent.findAll());
             model.setViewName("redirect:/componentDashboard");
+        }
+        return model;
+    }
+
+    @GetMapping("editComponent")
+    public ModelAndView displayEditComponent (
+            @ModelAttribute("ComponentDto") ComponentDto componentDto,
+            @RequestParam(value = PARAM_COMPONENT_ID, required = false) String componentIdStr ) {
+        ModelAndView model = new ModelAndView();
+        Map<String, String> errors = new HashMap<>();
+        long componentId = 0L;
+        try {
+            if (componentIdStr != null) {
+                componentId = Long.parseLong(componentIdStr);
+            }
+            ComponentDto dto = serviceComponent.findOne(componentId);
+            model.addObject("ComponentDto", dto);
+            model.setViewName("componentEdit");
+            model.addObject("models", serviceModel.findAll());
+            model.addObject("states", serviceState.findAll());
+        } catch (IllegalArgumentException e) {
+            LOGGER.info("Error while displaying the edit component view : {}", e.getMessage());
+            errors.put("Error", e.getMessage());
+            model.setViewName("componentDashboard");
+            model.addObject("components", serviceComponent.findAll());
         }
         return model;
     }

@@ -25,6 +25,7 @@
 					<th>introduced</th>
 					<th>discontinued</th>
 					<th>details</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -38,6 +39,7 @@
 						<td>${compo.introduced }</td>
 						<td>${compo.discontinued }</td>						
 						<td>${compo.details }</td>
+						<td><a href='editComponent?ComponentId=<c:out value="${compo.id}"/>'>edit</a>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -51,6 +53,7 @@
 					<th>introduced</th>
 					<th>discontinued</th>
 					<th>details</th>
+					<th></th>
 				</tr>
 			</tfooter>
 		</table>
