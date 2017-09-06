@@ -78,11 +78,17 @@ public class ComponentDaoImplTest {
                 componentDao.save(null).isPresent());
     }
 
-    // TODO Finish UT on save for component
+    @Test
+    public void findOneShouldRetrieveAnExistingObject () {
+        Optional<Component> compoOpt = componentDao.findOne(DatabaseObject.component5.getId());
+        assertTrue("Find One didn't retrieve the object", compoOpt.isPresent());
+        assertEquals("Find One didnt' retrieve the right object", DatabaseObject.component5,
+                compoOpt.get());
+    }
 
     @Test
-    public void testFindOne () {
-        // TODO implement this test
+    public void findOneShouldReturnEmptyResultForNonExistentObject () {
+        assertFalse("Find One does not return empty result", componentDao.findOne(-5L).isPresent());
     }
 
     @Test

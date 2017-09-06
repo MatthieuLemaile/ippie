@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.mlemaile.ippie.DatabaseObject;
 import com.mlemaile.ippie.core.Component;
+import com.mlemaile.ippie.core.Model;
+import com.mlemaile.ippie.core.State;
 import com.mlemaile.ippie.persistence.ComponentDao;
 import com.mlemaile.ippie.persistence.hql.PersistenceContext;
 import com.mlemaile.ippie.service.dto.ComponentDto;
@@ -78,7 +82,7 @@ public class ServiceComponentTest {
 
     @Test
     public void saveShouldReturnTrueWhenDaoOk () {
-        Component component = DatabaseObject.component1;
+        Component component = DatabaseObject.component9;
         Optional<Component> optComponent = Optional.of(component);
         Mockito.when(componentDao.save(component)).thenReturn(optComponent);
         boolean response = serviceComponent.save(mapperComponent.toDto(component));
@@ -87,11 +91,45 @@ public class ServiceComponentTest {
 
     @Test
     public void saveShouldReturnFalseWhenDaoNok () {
-        Component component = DatabaseObject.component1;
+        Component component = DatabaseObject.component8;
         Optional<Component> optComponent = Optional.empty();
         Mockito.when(componentDao.save(component)).thenReturn(optComponent);
         boolean response = serviceComponent.save(mapperComponent.toDto(component));
         assertFalse("Service does not return false when Dao nok", response);
     }
 
+    @Test
+    public void findOneWhouldBeOkWhenDaoOk(){
+        String name = "Test";
+        LocalDate introduced = LocalDate.of(2015, Month.FEBRUARY, 15);
+        LocalDate discontinued = LocalDate.of(2016, Month.APRIL, 15);
+        State state = DatabaseObject.state1;
+        Model model = DatabaseObject.model1;
+        String stateDetails = "detail about state";
+        String details = "details";
+        Optional<Component> compoOpt = Optional.of(
+                new Component(name, introduced, discontinued, state, stateDetails, model, details));
+        Mockito.when(componentDao.findOne(5L)).thenReturn(compoOpt);
+        ComponentDto dto = serviceComponent.findOne(5L);
+        assertEquals("Find one does not work as intended", name, dto.getName());
+        assertEquals("Find one does not work as intended", introduced.toString(),
+                dto.getIntroduced());
+        assertEquals("Find one does not work as intended", discontinued.toString(),
+                dto.getDiscontinued());
+        assertEquals("Find one does not work as intended", state.getId(), dto.getStateId());
+        assertEquals("Find one does not work as intended", model.getId(), dto.getModelId());
+        assertEquals("Find one does not work as intended", stateDetails, dto.getStateDetails());
+        assertEquals("Find one does not work as intended", details, dto.getDetails());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findOneShouldBeNokWhenDaoNok () {
+        Mockito.when(componentDao.findOne(5L)).thenReturn(Optional.empty());
+        serviceComponent.findOne(5L);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findOneShouldTrowIAEWhenIdIncorrect () {
+        serviceComponent.findOne(-5L);
+    }
 }
