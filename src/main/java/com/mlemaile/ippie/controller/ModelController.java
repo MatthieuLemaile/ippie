@@ -126,7 +126,7 @@ public class ModelController {
             List<TypeDto> types = serviceType.findAll();
             modelAndView.addObject("types", types);
             if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("error while editing type " + modelDto + " errors : "
+                LOGGER.warn("error while editing model " + modelDto + " errors : "
                         + result.getAllErrors());
             }
         } else {

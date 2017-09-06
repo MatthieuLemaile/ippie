@@ -116,9 +116,29 @@ public class ComponentController {
             model.addObject("states", serviceState.findAll());
         } catch (IllegalArgumentException e) {
             LOGGER.info("Error while displaying the edit component view : {}", e.getMessage());
-            errors.put("Error", e.getMessage());
+            errors.put("errors", e.getMessage());
             model.setViewName("componentDashboard");
             model.addObject("components", serviceComponent.findAll());
+        }
+        return model;
+    }
+
+    @PostMapping("editComponent")
+    public ModelAndView editComponent (
+            @Valid @ModelAttribute("ComponentDto") ComponentDto componentDto,
+            BindingResult result ) {
+        ModelAndView model = new ModelAndView();
+        if (result.hasErrors()) {
+            model.setViewName("componentEdit");
+            model.addObject("errors", result.getAllErrors());
+            model.addObject("models", serviceModel.findAll());
+            model.addObject("states", serviceState.findAll());
+            LOGGER.warn("Error while editing component. Error : {}. Component : {}",
+                    result.getAllErrors(), componentDto);
+        } else {
+            LOGGER.info("Editing component {}", componentDto);
+            serviceComponent.save(componentDto);
+            model.setViewName("redirect:/componentDashboard");
         }
         return model;
     }
