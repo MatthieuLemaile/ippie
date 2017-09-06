@@ -18,6 +18,7 @@ INSERT INTO model(id,name,type_id) values (11,'Asus Radeon RX 470',4);
 INSERT INTO state(id,name) values (1,'rangé');
 INSERT INTO state(id,name) values (2,'utilisé');
 INSERT INTO state(id,name) values (3,'prêté');
+INSERT INTO state(id,name) values (4,'hors gestion');
 
 INSERT INTO component (id,name,introduced,discontinued,state_id,state_details,model_id,details) VALUES (1,"tincidunt.","2004-12-08","2016-01-12 12",3,"Lorem ipsum dolor",4,"Lorem");
 INSERT INTO component (id,name,introduced,discontinued,state_id,state_details,model_id,details) VALUES (2,"mi","2007-03-09","2009-07-05 19",3,"Lorem ipsum",1,"Lorem ipsum");

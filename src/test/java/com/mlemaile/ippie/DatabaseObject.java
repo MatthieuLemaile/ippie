@@ -20,6 +20,7 @@ public class DatabaseObject {
     public static final Model model5;
     public static final Model model6;
     public static final State state1;
+    public static final State     state2;
     public static final Component component1;
     public static final Component component2;
     public static final Component component3;
@@ -53,6 +54,9 @@ public class DatabaseObject {
 
         state1 = new State("rangé");
         state1.setId(1);
+
+        state2 = new State("Prêt");
+        state2.setId(2);
 
         component1 = new Component("lacus. Nulla", LocalDate.of(2015, Month.OCTOBER, 4),
                 LocalDate.of(2017, Month.FEBRUARY, 21), state1,

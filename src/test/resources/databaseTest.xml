@@ -10,6 +10,7 @@
 	<model id="5" name="Asus PK 5KLM" type_id="3"/>
 	<model id="6" name="Gigabyte B85" type_id="3"/>
 	<state id="1" name="rangé" />
+	<state id="2" name="Prêt" />
 	<component
 		id="1"
 		name="lacus. Nulla"
