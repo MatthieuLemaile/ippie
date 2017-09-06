@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mlemaile.ippie.service.ComponentValidator;
 import com.mlemaile.ippie.service.ServiceComponent;
 import com.mlemaile.ippie.service.ServiceModel;
+import com.mlemaile.ippie.service.ServiceState;
 import com.mlemaile.ippie.service.dto.ComponentDto;
 import com.mlemaile.ippie.service.dto.ModelDto;
+import com.mlemaile.ippie.service.dto.StateDto;
 
 @Controller
 public class ComponentController {
@@ -31,6 +33,8 @@ public class ComponentController {
     private ServiceComponent serviceComponent;
     @Autowired
     private ServiceModel     serviceModel;
+    @Autowired
+    private ServiceState       serviceState;
     @Autowired
     private ComponentValidator componentValidator;
 
@@ -59,6 +63,8 @@ public class ComponentController {
         ModelAndView model = new ModelAndView();
         List<ModelDto> models = serviceModel.findAll();
         model.addObject("models", models);
+        List<StateDto> states = serviceState.findAll();
+        model.addObject("states", states);
         model.setViewName("componentAdd");
         return model;
     }
@@ -76,6 +82,8 @@ public class ComponentController {
             model.setViewName("componentAdd");
             model.addObject("errors", result.getAllErrors());
             List<ModelDto> models = serviceModel.findAll();
+            List<StateDto> states = serviceState.findAll();
+            model.addObject("states", states);
             model.addObject("models", models);
         } else {
             if (LOGGER.isInfoEnabled()) {

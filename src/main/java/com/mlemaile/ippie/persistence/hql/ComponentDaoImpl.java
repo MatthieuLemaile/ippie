@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ public class ComponentDaoImpl implements ComponentDao {
     @PersistenceContext
     private EntityManager em;
 
+    @Transactional
     @Override
     public Optional<Component> save ( Component c ) {
         // TODO What check tp dp about a Component ?

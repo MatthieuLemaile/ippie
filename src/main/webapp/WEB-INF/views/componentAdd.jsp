@@ -81,7 +81,7 @@
 						placeholder="additional details"/>
 				</div>
 				
-				<%-- <div class="form-group">
+				<div class="form-group">
 					<form:label path="stateId">
 								État :
 							</form:label>
@@ -94,7 +94,7 @@
 									</form:option>
 								</c:forEach>
 					</form:select>
-				</div> --%>
+				</div> 
 				
 				<div class="form-group">
 					<form:label path="stateDetails">

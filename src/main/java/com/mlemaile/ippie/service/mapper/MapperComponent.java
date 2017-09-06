@@ -59,7 +59,9 @@ public class MapperComponent {
         Component c = new Component(dto.getName());
         c.setDetails(dto.getDetails());
         c.setIntroduced(LocalDate.parse(dto.getIntroduced()));
-        c.setDiscontinued(LocalDate.parse(dto.getDiscontinued()));
+        if (dto.getDiscontinued() != null) {
+            c.setDiscontinued(LocalDate.parse(dto.getDiscontinued()));
+        }
         c.setId(dto.getId());
         c.setStateDetails(dto.getStateDetails());
         State state = new State(dto.getState());
