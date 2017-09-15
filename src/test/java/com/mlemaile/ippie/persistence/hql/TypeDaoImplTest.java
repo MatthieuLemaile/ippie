@@ -11,7 +11,6 @@ import javax.transaction.Transactional;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,9 +98,11 @@ public class TypeDaoImplTest {
     }
 
     @Test
-    @Ignore
     public void testDelete () {
-        // TOFO Implement this test
+        Type t1 = DatabaseObject.type3;
+        typeDao.delete(t1.getId());
+        Optional<Type> optT1 = typeDao.findOne(t1.getId());
+        assertFalse("", optT1.isPresent());
     }
 
 }
