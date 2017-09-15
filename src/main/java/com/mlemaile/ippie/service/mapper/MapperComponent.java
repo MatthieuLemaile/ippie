@@ -44,6 +44,11 @@ public class MapperComponent {
         return dto;
     }
 
+    /**
+     * This method map a List of component to the corresponding list of ComponentDto.
+     * @param components the list of components to map
+     * @return a List of ComponentDto
+     */
     public List<ComponentDto> toListDto ( List<Component> components ) {
         List<ComponentDto> dtos = new ArrayList<>();
         components.forEach(c -> {
@@ -52,6 +57,11 @@ public class MapperComponent {
         return dtos;
     }
 
+    /**
+     * This method map a Dto to the corresponding Component.
+     * @param dto the dto to map.
+     * @return a Component
+     */
     public Component toModel ( ComponentDto dto ) {
         if (dto == null) {
             throw new MapperException("The given dto is null");

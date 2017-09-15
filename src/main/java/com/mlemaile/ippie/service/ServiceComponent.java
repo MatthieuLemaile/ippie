@@ -62,6 +62,11 @@ public class ServiceComponent {
         return false;
     }
 
+    /**
+     * This method find the component corresponding to the given id.
+     * @param componentId the id of the component to find.
+     * @return a ComponentDto.
+     */
     public ComponentDto findOne ( long componentId ) {
         if (componentId <= 0) {
             throw new IllegalArgumentException("The provided Id must be greater than 0");
@@ -71,6 +76,10 @@ public class ServiceComponent {
         }));
     }
 
+    /**
+     * This method delete the component corresponding to the given id.
+     * @param id the id of the component to delete.
+     */
     public void deleteComponent ( long id ) {
         if (id <= 0) {
             throw new IllegalArgumentException("The given id does not match any Component");
