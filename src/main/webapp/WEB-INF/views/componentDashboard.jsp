@@ -39,6 +39,7 @@
 					<th>discontinued</th>
 					<th>details</th>
 					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -53,6 +54,7 @@
 						<td>${compo.discontinued }</td>						
 						<td>${compo.details }</td>
 						<td><a href='editComponent?ComponentId=<c:out value="${compo.id}"/>'>edit</a>
+						<td><a href='deleteComponent?ComponentId=<c:out value="${compo.id}"/>'>delete</a>
 					</tr>
 				</c:forEach>
 			</tbody>

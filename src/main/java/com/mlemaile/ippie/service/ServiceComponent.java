@@ -70,4 +70,11 @@ public class ServiceComponent {
             return new IllegalArgumentException("The corresponding Component does not exeists.");
         }));
     }
+
+    public void deleteComponent ( long id ) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("The given id does not match any Component");
+        }
+        componentDao.delete(id);
+    }
 }

@@ -132,4 +132,15 @@ public class ServiceComponentTest {
     public void findOneShouldTrowIAEWhenIdIncorrect () {
         serviceComponent.findOne(-5L);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteShouldThrowIAEWhenIdLessThanZero(){
+        serviceComponent.deleteComponent(0);
+    }
+    
+    @Test
+    public void deleteShouldCallDao(){
+        serviceComponent.deleteComponent(5);
+        Mockito.verify(componentDao).delete(5);
+    }
 }

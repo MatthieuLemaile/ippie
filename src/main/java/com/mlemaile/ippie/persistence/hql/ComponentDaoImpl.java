@@ -84,9 +84,16 @@ public class ComponentDaoImpl implements ComponentDao {
     }
 
     @Override
+    @Transactional
     public void delete ( long id ) {
-        // TODO ComponentDao
-
+        Component c = this.em.find(Component.class, id);
+        LOGGER.info("Deleting component {}", c);
+        try {
+            this.em.remove(c);
+        } catch (IllegalArgumentException e) {
+            LOGGER.info("Can't delete component {} with exception {}", c, e.getMessage());
+            LOGGER.debug("Exception is {}", e);
+        }
     }
 
 }

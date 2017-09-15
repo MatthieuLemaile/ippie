@@ -142,4 +142,25 @@ public class ComponentController {
         }
         return model;
     }
+
+    @GetMapping("deleteComponent")
+    public ModelAndView deleteComponent (
+            @RequestParam(value = PARAM_COMPONENT_ID, required = false) String componentIdStr ) {
+        ModelAndView model = new ModelAndView();
+        Map<String, String> errors = new HashMap<>();
+        long componentId = 0L;
+        try {
+            if (componentIdStr != null) {
+                componentId = Long.parseLong(componentIdStr);
+            }
+            serviceComponent.deleteComponent(componentId);
+            model.setViewName("redirect:/componentDashboard");
+        } catch (IllegalArgumentException e) {
+            LOGGER.info("Error while trying to delete component number {}", componentIdStr);
+            LOGGER.debug("Exception is {}", e);
+            model.setViewName("componentDashboard");
+            model.addObject("components", serviceComponent.findAll());
+        }
+        return model;
+    }
 }

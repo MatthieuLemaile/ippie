@@ -119,7 +119,10 @@ public class ComponentDaoImplTest {
 
     @Test
     public void testDelete () {
-        // TODO Implement thos test
+        Component c = DatabaseObject.component9;
+        componentDao.delete(c.getId());
+        Optional<Component> optCompo = componentDao.findOne(c.getId());
+        assertFalse("", optCompo.isPresent());
     }
 
 }
