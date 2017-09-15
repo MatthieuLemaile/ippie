@@ -82,7 +82,7 @@ public class ServiceComponentTest {
 
     @Test
     public void saveShouldReturnTrueWhenDaoOk () {
-        Component component = DatabaseObject.component9;
+        Component component = DatabaseObject.component10;
         Optional<Component> optComponent = Optional.of(component);
         Mockito.when(componentDao.save(component)).thenReturn(optComponent);
         boolean response = serviceComponent.save(mapperComponent.toDto(component));
