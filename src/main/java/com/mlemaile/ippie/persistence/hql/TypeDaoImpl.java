@@ -77,12 +77,13 @@ public class TypeDaoImpl implements TypeDao {
     }
 
     @Override
-    public void delete ( long id ) {
+    public boolean delete ( long id ) {
         Type t = this.em.find(Type.class, id);
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Deleting type from the database : " + t);
         }
         this.em.remove(t);
+        return true;
         // TODO take care of the IllegalArgumentException
     }
 

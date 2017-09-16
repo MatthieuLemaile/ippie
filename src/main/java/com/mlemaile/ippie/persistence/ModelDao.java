@@ -30,6 +30,7 @@ public interface ModelDao {
     /**
      * This method delete the model corresponding to the given id.
      * @param id the id of the model to delete.
+     * @return true if the operation went well
      */
-    public void delete(long id);
+    public boolean delete(long id);
 }

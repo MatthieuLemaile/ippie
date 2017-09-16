@@ -44,7 +44,7 @@ public class StateDaoImpl implements StateDao {
     }
 
     @Override
-    public void delete ( long id ) {
+    public boolean delete ( long id ) {
         throw new UnsupportedOperationException();
     }
 

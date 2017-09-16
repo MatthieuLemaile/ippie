@@ -30,6 +30,7 @@ public interface StateDao {
     /**
      * This method delete the State based on the given id
      * @param id the id of the State to delete.
+     * @return true if the deletion went well
      */
-    public void delete(long id);
+    public boolean delete(long id);
 }

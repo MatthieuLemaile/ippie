@@ -30,6 +30,7 @@ public interface ComponentDao {
     /**
      * This method delete a Component based on the given id.
      * @param id the id of the component to delete.
+     * @return true if the operation went well
      */
-    public void delete(long id);
+    public boolean delete(long id);
 }

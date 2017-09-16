@@ -79,12 +79,13 @@ public class ModelDaoImpl implements ModelDao {
     }
 
     @Override
-    public void delete ( long id ) {
+    public boolean delete ( long id ) {
         // TODO Handle IllegalArgumentException (find)
         Model m = em.find(Model.class, id);
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Deleting Model in the database : " + m);
         }
         em.remove(m);
+        return true;
     }
 }
