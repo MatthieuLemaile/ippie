@@ -87,22 +87,27 @@ public class TypeDaoImplTest {
 
     @Test
     public void findAllShouldRetrieveAllTypeFromTheDb () {
-        Type t1 = DatabaseObject.type1;
-        Type t2 = DatabaseObject.type2;
-        Type t3 = DatabaseObject.type3;
         List<Type> types = typeDao.findAll();
-        assertEquals("Find all Types does not work properly.", 3, types.size());
-        assertEquals("Find all Types does not work properly.", t1, types.get(0));
-        assertEquals("Find all Types does not work properly.", t2, types.get(1));
-        assertEquals("Find all Types does not work properly.", t3, types.get(2));
+        assertEquals("Find all Types does not work properly.", 5, types.size());
+        assertEquals("Find all Types does not work properly.", DatabaseObject.type1, types.get(0));
+        assertEquals("Find all Types does not work properly.", DatabaseObject.type2, types.get(1));
+        assertEquals("Find all Types does not work properly.", DatabaseObject.type3, types.get(2));
+        assertEquals("Find all Types does not work properly.", DatabaseObject.type4, types.get(3));
+        assertEquals("Find all Types does not work properly.", DatabaseObject.type5, types.get(4));
     }
 
     @Test
     public void testDelete () {
-        Type t1 = DatabaseObject.type3;
+        Type t1 = DatabaseObject.type5;
         typeDao.delete(t1.getId());
         Optional<Type> optT1 = typeDao.findOne(t1.getId());
         assertFalse("", optT1.isPresent());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testDeleteShouldThrowIAEWhenTypeIsUSed () {
+        Type t = DatabaseObject.type4;
+        typeDao.delete(t.getId());
     }
 
 }

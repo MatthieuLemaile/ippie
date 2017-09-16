@@ -14,14 +14,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Model;
+import com.mlemaile.ippie.core.Type;
 import com.mlemaile.ippie.persistence.ModelDao;
 
 @Repository
 public class ModelDaoImpl implements ModelDao {
 
-    private static String       HQL_SELECT_ALL   = "From Model";
-    private static String       HQL_SELECT_BY_ID = "Select m from Model as m where m.id=:id";
-    private static String       HQL_UPDATE_MODEL = "Update Model m set m.name=:name, m.type=:type where m.id=:id";
+    private static final String HQL_SELECT_ALL        = "From Model";
+    private static final String HQL_SELECT_BY_ID      = "Select m from Model as m where m.id=:id";
+    private static final String HQL_UPDATE_MODEL      = "Update Model m set m.name=:name, m.type=:type where m.id=:id";
+    private static final String HQL_SELECT_WHERE_USED = "Select m from Model m where  m.type.id = :id";
     private static final Logger LOGGER           = LoggerFactory.getLogger(ModelDao.class);
 
     @PersistenceContext
@@ -76,6 +78,13 @@ public class ModelDaoImpl implements ModelDao {
     @Override
     public List<Model> findAll () {
         return em.createQuery(HQL_SELECT_ALL, Model.class).getResultList();
+    }
+
+    @Override
+    public List<Model> findWhereTypeis(Type t){
+        TypedQuery<Model> query = em.createQuery(HQL_SELECT_WHERE_USED,Model.class);
+        query.setParameter("id", t.getId());
+        return query.getResultList();
     }
 
     @Override

@@ -11,21 +11,26 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Type;
+import com.mlemaile.ippie.persistence.ModelDao;
 import com.mlemaile.ippie.persistence.TypeDao;
 
 @Repository
 public class TypeDaoImpl implements TypeDao {
 
-    private static String HQL_SELECT_ALL      = "From Type";
-    private static String HQL_FIND_BY_ID      = "Select t from Type as t where t.id = :id";
-    private static String HQL_UPDATE = "Update Type t set t.name=:name where t.id=:id";
-    private static final Logger LOGGER              = LoggerFactory.getLogger(TypeDao.class);
+    private static final String HQL_SELECT_ALL = "From Type";
+    private static final String HQL_FIND_BY_ID = "Select t from Type as t where t.id = :id";
+    private static final String HQL_UPDATE     = "Update Type t set t.name=:name where t.id=:id";
+    private static final Logger LOGGER         = LoggerFactory.getLogger(TypeDao.class);
 
     @PersistenceContext
     EntityManager em;
+
+    @Autowired
+    ModelDao modelDao;
 
     @Override
     @Transactional
@@ -81,7 +86,9 @@ public class TypeDaoImpl implements TypeDao {
     public boolean delete ( long id ) {
         Type t = this.em.find(Type.class, id);
         LOGGER.info("Deleting type from the database : {}", t);
-        System.out.println(t);
+        if (modelDao.findWhereTypeis(t).size() > 0) {
+            throw new IllegalArgumentException("This type is still used.");
+        }
         try {
             this.em.remove(t);
             return true;
@@ -89,7 +96,6 @@ public class TypeDaoImpl implements TypeDao {
             LOGGER.info("Tried to delete a non existent Type : {}", t);
             return false;
         }
-
     }
 
 }

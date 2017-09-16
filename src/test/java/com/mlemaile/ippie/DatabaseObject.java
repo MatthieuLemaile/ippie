@@ -10,16 +10,20 @@ import com.mlemaile.ippie.core.Type;
 
 public class DatabaseObject {
 
-    public static final Type  type1;
-    public static final Type  type2;
-    public static final Type  type3;
-    public static final Model model1;
-    public static final Model model2;
-    public static final Model model3;
-    public static final Model model4;
-    public static final Model model5;
-    public static final Model model6;
-    public static final State state1;
+    public static final Type      type1;
+    public static final Type      type2;
+    public static final Type      type3;
+    public static final Type      type4;
+    public static final Type      type5;
+    public static final Model     model1;
+    public static final Model     model2;
+    public static final Model     model3;
+    public static final Model     model4;
+    public static final Model     model5;
+    public static final Model     model6;
+    public static final Model     model7;
+    public static final Model     model8;
+    public static final State     state1;
     public static final State     state2;
     public static final Component component1;
     public static final Component component2;
@@ -31,6 +35,8 @@ public class DatabaseObject {
     public static final Component component8;
     public static final Component component9;
     public static final Component component10;
+    public static final Component component11;
+    public static final Component component12;
     static {
         type1 = new Type("RAM");
         type1.setId(1);
@@ -38,6 +44,10 @@ public class DatabaseObject {
         type2.setId(2);
         type3 = new Type("CM");
         type3.setId(3);
+        type4 = new Type("Graphic card");
+        type4.setId(4);
+        type5 = new Type("Mouse");
+        type5.setId(5);
 
         model1 = new Model("E5500", type2);
         model1.setId(1);
@@ -51,6 +61,10 @@ public class DatabaseObject {
         model5.setId(5);
         model6 = new Model("Gigabyte B85", type3);
         model6.setId(6);
+        model7 = new Model("GeForce GTX 1050", type4);
+        model7.setId(7);
+        model8 = new Model("GeForce GTX 1060", type4);
+        model8.setId(8);
 
         state1 = new State("rangé");
         state1.setId(1);
@@ -107,6 +121,14 @@ public class DatabaseObject {
                 LocalDate.of(2017, 8, 28), state1, "at, velit. Pellentesque ultricies",
                 model4, "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor");
         component10.setId(10);
+        component11 = new Component("such a name", LocalDate.of(2014, 12, 15),
+                LocalDate.of(2017, 7, 18), state1, "at, Pellentesque ultricies", model5,
+                "lorem ut aliquam iaculis, lacus pede sagittis augue tempo");
+        component11.setId(11);
+        component12 = new Component("another name", LocalDate.of(2014, 9, 14),
+                LocalDate.of(2017, 10, 24), state1, "at, Pellentesque ultricies", model5,
+                "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor");
+        component12.setId(12);
     }
 
     // we don't want to instantiate this class

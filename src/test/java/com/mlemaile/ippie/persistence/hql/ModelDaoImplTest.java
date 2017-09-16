@@ -2,6 +2,7 @@ package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -83,7 +84,7 @@ public class ModelDaoImplTest {
     @Test
     public void testFindAll () {
         List<Model> models = modelDao.findAll();
-        assertEquals("Find all models does not work properly", 6, models.size());
+        assertEquals("Find all models does not work properly", 8, models.size());
         assertEquals("Find all models does not work properly", DatabaseObject.model1,
                 models.get(0));
         assertEquals("Find all models does not work properly", DatabaseObject.model2,
@@ -96,6 +97,24 @@ public class ModelDaoImplTest {
                 models.get(4));
         assertEquals("Find all models does not work properly", DatabaseObject.model6,
                 models.get(5));
+        assertEquals("Find all models does not work properly", DatabaseObject.model7,
+                models.get(6));
+        assertEquals("Find all models does not work properly", DatabaseObject.model8,
+                models.get(7));
+    }
+
+    @Test
+    public void findWhereTypeShouldReturnEmptyList () {
+        List<Model> models = modelDao.findWhereTypeis(DatabaseObject.type5);
+        assertNotNull("The returned list should not be null", models);
+        assertEquals("The returned list should be empty.", 0, models.size());
+    }
+
+    @Test
+    public void findWhereTypeShouldReturnANonEmptyList () {
+        List<Model> models = modelDao.findWhereTypeis(DatabaseObject.type4);
+        assertNotNull("The returned list should not be null", models);
+        assertEquals("The returned list should not be empty.", 2, models.size());
     }
 
     @Test

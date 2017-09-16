@@ -3,12 +3,16 @@
 	<type id="1" name="RAM" />
 	<type id="2" name="PROC" />
 	<type id="3" name="CM" />
+	<type id="4" name="Graphic card" />
+	<type id="5" name="Mouse" />
 	<model id="1" name="E5500" type_id="2"/>
 	<model id="2" name="intel core i7 7700" type_id="2"/>
 	<model id="3" name="Corsair DDR3 2Go 1333MHz CAS9" type_id="1"/>
 	<model id="4" name="Kingston DDR3 4Go 1600MHz CAS11" type_id="1"/>
 	<model id="5" name="Asus PK 5KLM" type_id="3"/>
 	<model id="6" name="Gigabyte B85" type_id="3"/>
+	<model id="7" name="GeForce GTX 1050" type_id="4"/>
+	<model id="8" name="GeForce GTX 1060" type_id="4"/>
 	<state id="1" name="rangé" />
 	<state id="2" name="Prêt" />
 	<component
@@ -109,6 +113,26 @@
 		state_id="1"
 		state_details="at, velit. Pellentesque ultricies"
 		model_id="4"
+		details="lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor"
+	/>
+	<component
+		id="11"
+		name="such a name"
+		introduced="2014-12-15"
+		discontinued="2017-07-18"
+		state_id="1"
+		state_details="at, Pellentesque ultricies"
+		model_id="5"
+		details="lorem ut aliquam iaculis, lacus pede sagittis augue tempo"
+	/>
+	<component
+		id="12"
+		name="another name"
+		introduced="2014-09-14"
+		discontinued="2017-10-24"
+		state_id="1"
+		state_details="at, Pellentesque ultricies"
+		model_id="5"
 		details="lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor"
 	/>
 </dataset>

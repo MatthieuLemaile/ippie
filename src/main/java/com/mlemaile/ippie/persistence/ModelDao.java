@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mlemaile.ippie.core.Model;
+import com.mlemaile.ippie.core.Type;
 
 public interface ModelDao {
 
@@ -27,6 +28,13 @@ public interface ModelDao {
      */
     public List<Model> findAll();
 
+    /**
+     * This method retrieve the list of all model using the given type.
+     * @param t the type used
+     * @return a List of Model
+     */
+    public List<Model> findWhereTypeis(Type t);
+    
     /**
      * This method delete the model corresponding to the given id.
      * @param id the id of the model to delete.
