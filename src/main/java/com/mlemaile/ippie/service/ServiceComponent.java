@@ -80,10 +80,10 @@ public class ServiceComponent {
      * This method delete the component corresponding to the given id.
      * @param id the id of the component to delete.
      */
-    public void deleteComponent ( long id ) {
+    public boolean deleteComponent ( long id ) {
         if (id <= 0) {
             throw new IllegalArgumentException("The given id does not match any Component");
         }
-        componentDao.delete(id);
+        return componentDao.delete(id);
     }
 }
