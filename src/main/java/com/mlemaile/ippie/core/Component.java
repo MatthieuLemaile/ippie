@@ -23,7 +23,7 @@ public class Component {
     private String    name;
     private LocalDate introduced;
     private LocalDate discontinued;
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToOne(fetch = FetchType.EAGER)
     private State     state;
     @Column(name = "state_details")
     private String    stateDetails;
