@@ -123,8 +123,23 @@ public class ModelDaoImplTest {
     }
 
     @Test
-    public void testDelete () {
-        // TODO implement this test
+    public void testDeleteShouldDeleteWhenOk () {
+        Model m = DatabaseObject.model8;
+        boolean result = modelDao.delete(m.getId());
+        assertTrue("delete should return true when deleting something", result);
+        Optional<Model> optModel = modelDao.findOne(m.getId());
+        assertFalse("delete should delete from database", optModel.isPresent());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteShouldThrowIAEWhenStillUsed () {
+        Model m = DatabaseObject.model7;
+        modelDao.delete(m.getId());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteShouldThrowIAEWhenNonExistentModel () {
+        modelDao.delete(-5L);
     }
 
 }

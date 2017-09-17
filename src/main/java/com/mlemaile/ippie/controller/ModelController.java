@@ -1,5 +1,6 @@
 package com.mlemaile.ippie.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,6 +136,29 @@ public class ModelController {
             }
             serviceModel.save(modelDto);
             modelAndView.setViewName("redirect:/modelDashboard");
+        }
+        return modelAndView;
+    }
+
+    @GetMapping("deleteModel")
+    public ModelAndView deleteModel (
+            @RequestParam(value = PARAM_MODEL_ID, required = false) String modelIdStr ) {
+        ModelAndView modelAndView = new ModelAndView();
+        long modelId = 0;
+        try {
+            if (modelIdStr != null) {
+                modelId = Long.parseLong(modelIdStr);
+            }
+            serviceModel.delete(modelId);
+            modelAndView.setViewName("redirect:/modelDashboard");
+        } catch (IllegalArgumentException e) {
+            List<String> errors = new ArrayList<>();
+            LOGGER.info("error while trying to delete model number {}.", modelIdStr);
+            LOGGER.debug("Exeption is ", e);
+            errors.add(e.getMessage());
+            modelAndView.addObject("listStringErrors", errors);
+            modelAndView.addObject("models", serviceModel.findAll());
+            modelAndView.setViewName("modelDashboard");
         }
         return modelAndView;
     }

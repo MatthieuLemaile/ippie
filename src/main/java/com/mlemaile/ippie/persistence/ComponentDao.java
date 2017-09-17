@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.mlemaile.ippie.core.Component;
+import com.mlemaile.ippie.core.Model;
 
 public interface ComponentDao {
 
@@ -26,6 +27,13 @@ public interface ComponentDao {
      * @return
      */
     public List<Component> findAll();
+    
+    /**
+     * This method retrieve all component using the given model
+     * @param m the model component are using
+     * @return a List of Component using the Model m
+     */
+    public List<Component> findWhereModelIs(Model m);
 
     /**
      * This method delete a Component based on the given id.

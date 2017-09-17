@@ -164,7 +164,6 @@ public class TypeController {
             model.addObject("types", serviceType.findAll());
             model.setViewName("typeDashboard");
         }
-
         return model;
     }
 }
