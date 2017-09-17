@@ -99,7 +99,8 @@ public class TypeDaoImplTest {
     @Test
     public void testDelete () {
         Type t1 = DatabaseObject.type5;
-        typeDao.delete(t1.getId());
+        boolean result = typeDao.delete(t1.getId());
+        assertTrue("delete should return true when deleting something", result);
         Optional<Type> optT1 = typeDao.findOne(t1.getId());
         assertFalse("", optT1.isPresent());
     }
@@ -108,6 +109,11 @@ public class TypeDaoImplTest {
     public void testDeleteShouldThrowIAEWhenTypeIsUSed () {
         Type t = DatabaseObject.type4;
         typeDao.delete(t.getId());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteShouldThrowIAEWhenNonExistentType () {
+        typeDao.delete(-5L);
     }
 
 }
