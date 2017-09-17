@@ -44,21 +44,14 @@ public class ServiceComponent {
                     "The given dto has a null or empty/white space name.");
         }
         Component c = mapperComponent.toModel(dto);
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Saving Component in the database : " + c);
-        }
+        LOGGER.info("Saving Component in the database : {}", c);
         Optional<Component> compoOpt = componentDao.save(c);
         if (compoOpt.isPresent()) {
             dto = mapperComponent.toDto(compoOpt.get());
-
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Save successful for" + dto);
-            }
+            LOGGER.info("Save successful for {}", dto);
             return true;
         }
-        if (LOGGER.isWarnEnabled()) {
-            LOGGER.warn("Can't save component : " + dto);
-        }
+        LOGGER.warn("Can't save component : {}", dto);
         return false;
     }
 

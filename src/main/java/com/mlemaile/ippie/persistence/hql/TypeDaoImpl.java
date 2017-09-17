@@ -39,14 +39,10 @@ public class TypeDaoImpl implements TypeDao {
             return Optional.empty();
         }
         if (t.getId() == 0) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Creating type in the database : " + t);
-            }
+            LOGGER.info("Creating type in the database : {}", t);
             return create(t);
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Updating type in the database : " + t);
-            }
+            LOGGER.info("Updating type in the database : {}", t);
             return update(t);
         }
     }

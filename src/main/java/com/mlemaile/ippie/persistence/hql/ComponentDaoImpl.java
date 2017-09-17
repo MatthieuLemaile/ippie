@@ -38,14 +38,10 @@ public class ComponentDaoImpl implements ComponentDao {
             return Optional.empty();
         }
         if (c.getId() == 0) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Creating Component in the database : " + c);
-            }
+            LOGGER.info("Creating Component in the database : {}", c);
             return create(c);
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Updating Component in the database : " + c);
-            }
+            LOGGER.info("Updating Component in the database : {}", c);
             return update(c);
         }
     }

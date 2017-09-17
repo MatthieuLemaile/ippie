@@ -42,14 +42,10 @@ public class ModelDaoImpl implements ModelDao {
             return Optional.empty();
         }
         if (model.getId() == 0) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Creating Model in the database : " + model);
-            }
+            LOGGER.info("Creating Model in the database : {}", model);
             return create(model);
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Updating Model in the database : " + model);
-            }
+            LOGGER.info("Updating Model in the database : {}", model);
             return update(model);
         }
     }

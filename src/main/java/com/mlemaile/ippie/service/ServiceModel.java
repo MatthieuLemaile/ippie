@@ -59,22 +59,14 @@ public class ServiceModel {
             throw new IllegalArgumentException("The given dto has a non existant Type");
         }
         Model model = MapperModel.INSTANCE.toModel(dto);
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Saving Model in the database : " + model);
-        }
+        LOGGER.info("Saving Model in the database :{} ", model);
         Optional<Model> optionalModel = modelDao.save(model);
         if (optionalModel.isPresent()) {
             dto = MapperModel.INSTANCE.toDto(optionalModel.get());
-
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Save successful for" + dto);
-            }
+            LOGGER.info("Save successful for {}", dto);
             return true;
         }
-
-        if (LOGGER.isWarnEnabled()) {
-            LOGGER.warn("Can't save model : " + model);
-        }
+        LOGGER.warn("Can't save model : {}", model);
         return false;
     }
 

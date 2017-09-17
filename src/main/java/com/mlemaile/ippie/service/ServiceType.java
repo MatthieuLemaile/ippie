@@ -56,24 +56,14 @@ public class ServiceType {
                     "The given dto has a null or empty/white space name.");
         }
         Type type = MapperType.INSTANCE.toModel(dto);
-
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Saving Type in the database : " + type);
-        }
-
+        LOGGER.info("Saving Type in the database : {}", type);
         Optional<Type> optionalType = typeDao.save(type);
         if (optionalType.isPresent()) {
             dto = MapperType.INSTANCE.toDto(optionalType.get());
-
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Save successful for" + optionalType.get());
-            }
+            LOGGER.info("Save successful for {}", optionalType.get());
             return true;
         }
-
-        if (LOGGER.isWarnEnabled()) {
-            LOGGER.warn("Can't save type : " + type);
-        }
+        LOGGER.warn("Can't save type : {}", type);
         return false;
     }
 

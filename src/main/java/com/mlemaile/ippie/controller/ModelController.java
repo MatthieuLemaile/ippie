@@ -51,9 +51,6 @@ public class ModelController {
     public ModelAndView displayModel () {
         ModelAndView model = new ModelAndView();
         model.setViewName("modelDashboard");
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Retrieving and displaying all models");
-        }
         model.addObject("models", serviceModel.findAll());
         return model;
     }
@@ -73,16 +70,12 @@ public class ModelController {
         ModelAndView modelAndView = new ModelAndView();
         if (result.hasErrors()) {
             modelAndView.setViewName("modelAdd");
-            if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("Error receiving model : " + modelDto);
-            }
+            LOGGER.warn("Error receiving model : {}", modelDto);
             List<TypeDto> types = serviceType.findAll();
             modelAndView.addObject("types", types);
             modelAndView.addObject("errors", result.getAllErrors());
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Saving model : " + modelDto);
-            }
+            LOGGER.info("Saving model : {}", modelDto);
             serviceModel.save(modelDto);
             modelAndView.setViewName("redirect:/modelDashboard");
         }
@@ -105,9 +98,7 @@ public class ModelController {
             List<TypeDto> types = serviceType.findAll();
             modelAndView.addObject("types", types);
         } catch (IllegalArgumentException e) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Error while displaying edit model view : " + e.getMessage());
-            }
+            LOGGER.info("Error while displaying edit model view : {}", e.getMessage());
             errors.put("Error", e.getMessage());
             modelAndView.setViewName("modelDashboard");
             modelAndView.addObject("errors", errors);
@@ -126,14 +117,10 @@ public class ModelController {
             modelAndView.addObject("errors", result.getAllErrors());
             List<TypeDto> types = serviceType.findAll();
             modelAndView.addObject("types", types);
-            if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("error while editing model " + modelDto + " errors : "
-                        + result.getAllErrors());
-            }
+            LOGGER.warn("error while editing model {} errors : {}", modelDto,
+                        result.getAllErrors());
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Editing type : " + modelDto);
-            }
+            LOGGER.info("Editing type : {}", modelDto);
             serviceModel.save(modelDto);
             modelAndView.setViewName("redirect:/modelDashboard");
         }

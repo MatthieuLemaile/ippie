@@ -54,9 +54,6 @@ public class ComponentController {
     public ModelAndView DisplayComponent () {
         ModelAndView model = new ModelAndView();
         model.setViewName("componentDashboard");
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Retrieving and displaying all Component");
-        }
         model.addObject("components", serviceComponent.findAll());
         return model;
     }
@@ -79,18 +76,14 @@ public class ComponentController {
             BindingResult result ) {
         ModelAndView model = new ModelAndView();
         if (result.hasErrors()) {
-            if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("Error receiving component: " + componentDto);
-            }
+            LOGGER.warn("Error receiving component: {}", componentDto);
             componentDto.setStateDetails(componentDto.getStateDetails() + "ö");
             model.setViewName("componentAdd");
             model.addObject("errors", result.getAllErrors());
             model.addObject("states", serviceState.findAll());
             model.addObject("models", serviceModel.findAll());
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Saving component : " + componentDto);
-            }
+            LOGGER.info("Saving component : {}", componentDto);
             serviceComponent.save(componentDto);
             model.addObject("components", serviceComponent.findAll());
             model.setViewName("redirect:/componentDashboard");

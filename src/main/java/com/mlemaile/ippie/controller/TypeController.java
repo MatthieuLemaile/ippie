@@ -52,9 +52,6 @@ public class TypeController {
     public ModelAndView displayAllType () {
         ModelAndView model = new ModelAndView();
         model.setViewName("typeDashboard");
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Retrieving and displaying all type");
-        }
         List<TypeDto> types = serviceType.findAll();
         model.addObject("types", types);
         return model;
@@ -82,14 +79,10 @@ public class TypeController {
         ModelAndView model = new ModelAndView();
         if (result.hasErrors()) {
             model.setViewName("typeAdd");
-            if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("Error receiving type : " + typeDto);
-            }
+            LOGGER.warn("Error receiving type : {}", typeDto);
             model.addObject("errors", result.getAllErrors());
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Saving type : " + typeDto);
-            }
+            LOGGER.info("Saving type : {}", typeDto);
             serviceType.save(typeDto);
             model.setViewName("redirect:/typeDashboard");
         }
@@ -111,9 +104,7 @@ public class TypeController {
             model.addObject("typeDto", dto);
             model.setViewName("typeEdit");
         } catch (IllegalArgumentException e) {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Error while displaying edit type view : " + e.getMessage());
-            }
+            LOGGER.info("Error while displaying edit type view : {}", e.getMessage());
             errors.put("Error", e.getMessage());
             model.setViewName("typeDashboard");
             model.addObject("errors", errors);
@@ -130,14 +121,9 @@ public class TypeController {
         if (result.hasErrors()) {
             model.setViewName("typeEdit");
             model.addObject("errors", result.getAllErrors());
-            if (LOGGER.isWarnEnabled()) {
-                LOGGER.warn("error while editing type " + typeDto + " errors : "
-                        + result.getAllErrors());
-            }
+            LOGGER.warn("error while editing type {} errors : {}", typeDto, result.getAllErrors());
         } else {
-            if (LOGGER.isInfoEnabled()) {
-                LOGGER.info("Editing type : " + typeDto);
-            }
+            LOGGER.info("Editing type : {}", typeDto);
             serviceType.save(typeDto);
             model.setViewName("redirect:/typeDashboard");
         }
