@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Component;
+import com.mlemaile.ippie.core.Model;
 import com.mlemaile.ippie.persistence.ComponentDao;
 
 @Repository
@@ -21,6 +22,7 @@ public class ComponentDaoImpl implements ComponentDao {
     private static final Logger LOGGER               = LoggerFactory.getLogger(ComponentDao.class);
     private static String       HQL_SELECT_BY_ID     = "Select c from Component as c where c.id=:id";
     private static String       HQL_FIND_ALL         = "From Component";
+    private static final String HQL_SELECT_WHERE_USED = "Select c from Component c where  c.model.id = :id";
     private static String       HQL_UPDATE_COMPONENT = "Update Component c set c.name=:name, "
             + "c.introduced=:introduced, c.discontinued=:discontinued, c.state=:state, "
             + "c.stateDetails=:stateDetails, c.model=:model, c.details=:details where c.id=:id";
@@ -84,6 +86,16 @@ public class ComponentDaoImpl implements ComponentDao {
     }
 
     @Override
+    public List<Component> findWhereModelIs ( Model m ) {
+        if (m == null) {
+            throw new IllegalArgumentException("The given model does not exists");
+        }
+        TypedQuery<Component> query = em.createQuery(HQL_SELECT_WHERE_USED, Component.class);
+        query.setParameter("id", m.getId());
+        return query.getResultList();
+    }
+
+    @Override
     @Transactional
     public boolean delete ( long id ) {
         Component c = this.em.find(Component.class, id);
@@ -97,5 +109,4 @@ public class ComponentDaoImpl implements ComponentDao {
             return false;
         }
     }
-
 }

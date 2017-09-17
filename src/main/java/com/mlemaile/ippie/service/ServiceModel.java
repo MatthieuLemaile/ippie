@@ -77,4 +77,11 @@ public class ServiceModel {
         }
         return false;
     }
+
+    public boolean delete ( long id ) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("The given id does not match any Model");
+        }
+        return modelDao.delete(id);
+    }
 }

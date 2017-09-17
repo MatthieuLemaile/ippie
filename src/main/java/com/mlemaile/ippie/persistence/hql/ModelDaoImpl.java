@@ -11,10 +11,12 @@ import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mlemaile.ippie.core.Model;
 import com.mlemaile.ippie.core.Type;
+import com.mlemaile.ippie.persistence.ComponentDao;
 import com.mlemaile.ippie.persistence.ModelDao;
 
 @Repository
@@ -28,6 +30,9 @@ public class ModelDaoImpl implements ModelDao {
 
     @PersistenceContext
     private EntityManager em;
+
+    @Autowired
+    private ComponentDao componentDao;
 
     @Transactional
     @Override
@@ -91,13 +96,19 @@ public class ModelDaoImpl implements ModelDao {
     }
 
     @Override
+    @Transactional
     public boolean delete ( long id ) {
-        // TODO Handle IllegalArgumentException (find)
         Model m = em.find(Model.class, id);
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("Deleting Model in the database : " + m);
+        LOGGER.info("Deleting model from the database : {}", m);
+        if (componentDao.findWhereModelIs(m).size() > 0) {
+            throw new IllegalArgumentException("This model is still used.");
         }
-        em.remove(m);
-        return true;
+        try {
+            em.remove(m);
+            return true;
+        } catch (IllegalArgumentException e) {
+            LOGGER.info("Tried to delete a non existent Model : {}", m);
+            return false;
+        }
     }
 }

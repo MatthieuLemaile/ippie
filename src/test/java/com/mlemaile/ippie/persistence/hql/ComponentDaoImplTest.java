@@ -2,6 +2,7 @@ package com.mlemaile.ippie.persistence.hql;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -119,6 +120,25 @@ public class ComponentDaoImplTest {
                 components.get(10));
         assertEquals("Find all component does not work properly", DatabaseObject.component12,
                 components.get(11));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void findWhereModelShouldThrowIAE () {
+        componentDao.findWhereModelIs(null);
+    }
+
+    @Test
+    public void findWhereModelShouldReturnEmptyList () {
+        List<Component> components = componentDao.findWhereModelIs(DatabaseObject.model8);
+        assertNotNull("The returned list should not be null", components);
+        assertEquals("The returned List should be empty", 0, components.size());
+    }
+
+    @Test
+    public void findWhereModelShouldReturnANonEmptyList () {
+        List<Component> components = componentDao.findWhereModelIs(DatabaseObject.model7);
+        assertNotNull("The returned list should not be null", components);
+        assertEquals("The returned List should not be empty", 2, components.size());
     }
 
     @Test

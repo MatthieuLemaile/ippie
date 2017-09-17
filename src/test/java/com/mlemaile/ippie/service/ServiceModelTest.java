@@ -119,4 +119,15 @@ public class ServiceModelTest {
     public void findOneShouldNotBeOkWhenIdLessThanZero () {
         serviceModel.findOne(-5L);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIAEWhenIncorrectId () {
+        serviceModel.delete(-5L);
+    }
+
+    @Test
+    public void shouldCallDaoForCorrectId(){
+        serviceModel.delete(5);
+        Mockito.verify(modelDao, Mockito.times(1)).delete(5);
+    }
 }
