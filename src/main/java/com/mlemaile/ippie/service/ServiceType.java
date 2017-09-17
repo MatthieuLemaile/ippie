@@ -85,7 +85,7 @@ public class ServiceType {
      */
     public boolean delete ( long id ) {
         if (id <= 0) {
-            throw new IllegalArgumentException("The given id does not match any Component");
+            throw new IllegalArgumentException("The given id does not match any Type");
         }
         return typeDao.delete(id);
     }
