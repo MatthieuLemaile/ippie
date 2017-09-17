@@ -78,6 +78,12 @@ public class ServiceModel {
         return false;
     }
 
+    /**
+     * This method delete the Model corresponding to the given id.
+     * @param id the id of the model to delete
+     * @return true if the operation went well
+     * @throws IllegalArgumentException if the given id does not exists or is still used.
+     */
     public boolean delete ( long id ) {
         if (id <= 0) {
             throw new IllegalArgumentException("The given id does not match any Model");
