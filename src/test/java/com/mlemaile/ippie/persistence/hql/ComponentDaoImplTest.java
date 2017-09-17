@@ -94,7 +94,7 @@ public class ComponentDaoImplTest {
     @Test
     public void testFindAll () {
         List<Component> components = componentDao.findAll();
-        assertEquals("Find all component does not work properly", 10, components.size());
+        assertEquals("Find all component does not work properly", 12, components.size());
         assertEquals("Find all component does not work properly",
                 DatabaseObject.component1, components.get(0));
         assertEquals("Find all component does not work properly",
@@ -115,6 +115,10 @@ public class ComponentDaoImplTest {
                 DatabaseObject.component9, components.get(8));
         assertEquals("Find all component does not work properly",
                 DatabaseObject.component10, components.get(9));
+        assertEquals("Find all component does not work properly", DatabaseObject.component11,
+                components.get(10));
+        assertEquals("Find all component does not work properly", DatabaseObject.component12,
+                components.get(11));
     }
 
     @Test

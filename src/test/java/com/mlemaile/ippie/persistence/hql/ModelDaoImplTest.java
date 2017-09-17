@@ -117,6 +117,11 @@ public class ModelDaoImplTest {
         assertEquals("The returned list should not be empty.", 2, models.size());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void findWhereTypeShouldThrowIAE () {
+        modelDao.findWhereTypeis(null);
+    }
+
     @Test
     public void testDelete () {
         // TODO implement this test

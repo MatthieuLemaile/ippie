@@ -1,5 +1,6 @@
 package com.mlemaile.ippie.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +141,30 @@ public class TypeController {
             serviceType.save(typeDto);
             model.setViewName("redirect:/typeDashboard");
         }
+        return model;
+    }
+
+    @GetMapping("deleteType")
+    public ModelAndView deleteType (
+            @RequestParam(value = PARAM_TYPE_ID, required = false) String typeIdStr ) {
+        ModelAndView model = new ModelAndView();
+        long typeId = 0L;
+        try {
+            if (typeIdStr != null) {
+                typeId = Long.parseLong(typeIdStr);
+            }
+            serviceType.delete(typeId);
+            model.setViewName("redirect:/typeDashboard");
+        } catch (IllegalArgumentException e) {
+            List<String> errors = new ArrayList<>();
+            LOGGER.info("error while trying to delete type number {}.", typeIdStr);
+            LOGGER.debug("Exeption is ", e);
+            errors.add(e.getMessage());
+            model.addObject("listStringErrors", errors);
+            model.addObject("types", serviceType.findAll());
+            model.setViewName("typeDashboard");
+        }
+
         return model;
     }
 }

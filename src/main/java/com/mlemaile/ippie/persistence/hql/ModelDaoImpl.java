@@ -82,6 +82,9 @@ public class ModelDaoImpl implements ModelDao {
 
     @Override
     public List<Model> findWhereTypeis(Type t){
+        if (t == null) {
+            throw new IllegalArgumentException("The given Type does not exists");
+        }
         TypedQuery<Model> query = em.createQuery(HQL_SELECT_WHERE_USED,Model.class);
         query.setParameter("id", t.getId());
         return query.getResultList();

@@ -76,4 +76,17 @@ public class ServiceType {
         }
         return false;
     }
+
+    /**
+     * This method delete the type corresponding to the id, if it exists and not used.
+     * @param id the id of the type to delete. 
+     * @return true if the deletion went well
+     * @throws IllegalArgumentException if the type does not exists or is used.
+     */
+    public boolean delete ( long id ) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("The given id does not match any Component");
+        }
+        return typeDao.delete(id);
+    }
 }

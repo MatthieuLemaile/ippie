@@ -147,7 +147,6 @@ public class ComponentController {
     public ModelAndView deleteComponent (
             @RequestParam(value = PARAM_COMPONENT_ID, required = false) String componentIdStr ) {
         ModelAndView model = new ModelAndView();
-        Map<String, String> errors = new HashMap<>();
         long componentId = 0L;
         try {
             if (componentIdStr != null) {
