@@ -112,4 +112,24 @@ public class ServiceTypeTest {
         serviceType.findOne(-2L);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIAEWhenIncorrectId () {
+        serviceType.delete(-5L);
+    }
+
+    @Test
+    public void shouldCallDaoForCorrectIdAndReturnTrueIfDaoOk () {
+        Mockito.when(typeDao.delete(5)).thenReturn(true);
+        boolean result = serviceType.delete(5L);
+        Mockito.verify(typeDao, Mockito.times(1)).delete(5);
+        assertTrue("Should return dao's result", result);
+    }
+
+    @Test
+    public void shouldCallDaoForCorrectIdAndReturnFalseIfDaoNok () {
+        Mockito.when(typeDao.delete(5)).thenReturn(false);
+        boolean result = serviceType.delete(5L);
+        Mockito.verify(typeDao, Mockito.times(1)).delete(5);
+        assertFalse("Should return dao's result", result);
+    }
 }
