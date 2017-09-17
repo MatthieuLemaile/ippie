@@ -141,6 +141,6 @@ public class ServiceComponentTest {
     @Test
     public void deleteShouldCallDao(){
         serviceComponent.deleteComponent(5);
-        Mockito.verify(componentDao).delete(5);
+        Mockito.verify(componentDao, Mockito.times(1)).delete(5);
     }
 }
