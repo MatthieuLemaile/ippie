@@ -122,11 +122,11 @@ public class DatabaseObject {
                 model4, "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor");
         component10.setId(10);
         component11 = new Component("such a name", LocalDate.of(2014, 12, 15),
-                LocalDate.of(2017, 7, 18), state1, "at, Pellentesque ultricies", model5,
+                LocalDate.of(2017, 7, 18), state1, "at, Pellentesque ultricies", model7,
                 "lorem ut aliquam iaculis, lacus pede sagittis augue tempo");
         component11.setId(11);
         component12 = new Component("another name", LocalDate.of(2014, 9, 14),
-                LocalDate.of(2017, 10, 24), state1, "at, Pellentesque ultricies", model5,
+                LocalDate.of(2017, 10, 24), state1, "at, Pellentesque ultricies", model7,
                 "lorem ut aliquam iaculis, lacus pede sagittis augue, eu tempor");
         component12.setId(12);
     }
