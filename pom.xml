@@ -4,7 +4,7 @@
 	<groupId>com.mlemaile.ippie</groupId>
 	<artifactId>Ippie</artifactId>
 	<packaging>war</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>Ippie Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
